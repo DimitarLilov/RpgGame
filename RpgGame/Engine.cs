@@ -1,5 +1,6 @@
 ﻿namespace RpgGame
 {
+    using Core;
     using RLNET;
 
     public class Engine
@@ -47,11 +48,11 @@
 
         private static void OnRootConsoleUpdate(object sender, UpdateEventArgs e)
         {
-            messageConsole.SetBackColor(0, 0, messageWidth, messageHeight, RLColor.Gray);
-            messageConsole.Print(1, 0, "Messages", RLColor.White);
+            messageConsole.SetBackColor(0, 0, messageWidth, messageHeight, Swatch.DbDeepWater);
+            messageConsole.Print(1, 0, "Messages", Colors.TextHeading);
 
-            inventoryConsole.SetBackColor(0, 0, inventoryWidth, inventoryHeight, RLColor.Brown);
-            inventoryConsole.Print(1, 1, "Inventory", RLColor.White);
+            inventoryConsole.SetBackColor(0, 0, inventoryWidth, inventoryHeight, Swatch.DbWood);
+            inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
         }
 
         private static void OnRootConsoleRender(object sender, UpdateEventArgs e)
