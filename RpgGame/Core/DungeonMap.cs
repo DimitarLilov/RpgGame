@@ -14,6 +14,21 @@
             }
         }
 
+        public void UpdatePlayerFieldOfView()
+        {
+            Player player = Engine.Player;
+
+            this.ComputeFov(player.X, player.Y, player.Awareness, true);
+
+            foreach (Cell cell in this.GetAllCells())
+            {
+                if (this.IsInFov(cell.X, cell.Y))
+                {
+                    this.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, cell.IsWalkable, true);
+                }
+            }
+        }
+
         private void SetConsoleSymbolForCell(RLConsole console, Cell cell)
         {
             if (!cell.IsExplored)
