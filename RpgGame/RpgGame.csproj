@@ -55,13 +55,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\StandardMoveAndAttack.cs" />
     <Compile Include="Core\Character.cs" />
     <Compile Include="Core\Colors.cs" />
     <Compile Include="Core\Direction.cs" />
     <Compile Include="Core\DungeonMap.cs" />
+    <Compile Include="Core\Monster.cs" />
+    <Compile Include="Core\Monsters\Orc.cs" />
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\Room.cs" />
-    <Compile Include="Core\Swatch.cs" />
+    <Compile Include="Interfaces\Swatch.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Interfaces\IBehavior.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="Systems\CommandSystem.cs" />
     <Compile Include="Systems\MapGenerator.cs" />
     <Compile Include="Systems\MessageLog.cs" />
+    <Compile Include="Systems\SchedulingSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

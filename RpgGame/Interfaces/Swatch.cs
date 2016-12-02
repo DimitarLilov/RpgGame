@@ -44,6 +44,7 @@
         public static readonly RLColor DbSky = new RLColor(109, 194, 202);
         public static readonly RLColor DbSun = new RLColor(218, 212, 94);
         public static readonly RLColor DbLight = new RLColor(222, 238, 214);
+        public static readonly RLColor Green = new RLColor(0, 255, 0);
         public static readonly RLColor Red = new RLColor(255, 0, 0);
         public static readonly RLColor DarkRed = new RLColor(139, 0, 0);
     }

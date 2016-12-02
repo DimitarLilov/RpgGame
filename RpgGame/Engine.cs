@@ -1,8 +1,10 @@
 ﻿namespace RpgGame
 {
+    using System;
     using Systems;
     using Core;
     using RLNET;
+    using RogueSharp.Random;
 
     public class Engine
     {
@@ -35,10 +37,22 @@
 
         public static MessageLog MessageLog { get; private set; }
 
+        public static SchedulingSystem SchedulingSystem { get; private set; }
+
+        public static IRandom Random { get; private set; }
+
         public static Player Player { get; set; }
+
+        public static void Exit()
+        {
+            rootConsole.Close();
+        }
 
         public void Run()
         {
+            int seed = (int)DateTime.UtcNow.Ticks;
+            Random = new DotNetRandom(seed);
+
             string fontFileName = "../../Resources/terminal8x8.png";
 
             string consoleTitle = "Rpg Game";
@@ -46,6 +60,8 @@
             Player = new Player();
             CommandSystem = new CommandSystem();
             MessageLog = new MessageLog();
+            SchedulingSystem = new SchedulingSystem();
+            SchedulingSystem.Add(Player);
 
             rootConsole = new RLRootConsole(fontFileName, screenWidth, screenHeight, 8, 8, 1f, consoleTitle);
             MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight);
@@ -69,33 +85,41 @@
         {
             bool didPlayerAct = false;
             RLKeyPress keyPress = rootConsole.Keyboard.GetKeyPress();
-
-            if (keyPress != null)
+            if (CommandSystem.IsPlayerTurn)
             {
-                if (keyPress.Key == RLKey.Up)
+                if (keyPress != null)
                 {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
+                    if (keyPress.Key == RLKey.Up)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
+                    }
+                    else if (keyPress.Key == RLKey.Down)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Down);
+                    }
+                    else if (keyPress.Key == RLKey.Left)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Left);
+                    }
+                    else if (keyPress.Key == RLKey.Right)
+                    {
+                        didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
+                    }
+                    else if (keyPress.Key == RLKey.Escape)
+                    {
+                        Exit();
+                    }
                 }
-                else if (keyPress.Key == RLKey.Down)
+
+                if (didPlayerAct)
                 {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Down);
-                }
-                else if (keyPress.Key == RLKey.Left)
-                {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Left);
-                }
-                else if (keyPress.Key == RLKey.Right)
-                {
-                    didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
-                }
-                else if (keyPress.Key == RLKey.Escape)
-                {
-                    rootConsole.Close();
+                    renderRequired = true;
+                    CommandSystem.EndPlayerTurn();
                 }
             }
-
-            if (didPlayerAct)
+            else
             {
+                CommandSystem.ActivateMonsters();
                 renderRequired = true;
             }
         }
@@ -104,24 +128,28 @@
         {
             if (renderRequired)
             {
+                mapConsole.Clear();
+                statConsole.Clear();
+                messageConsole.Clear();
+
+                DungeonMap.Draw(mapConsole, statConsole);
+                Player.Draw(mapConsole, DungeonMap);
+                MessageLog.Draw(messageConsole);
+                Player.DrawStats(statConsole);
+
+                messageConsole.SetBackColor(0, 0, messageWidth, messageHeight, Swatch.DbDeepWater);
+                messageConsole.Print(1, 0, "Messages", Colors.TextHeading);
+
+                inventoryConsole.SetBackColor(0, 0, inventoryWidth, inventoryHeight, Swatch.DbWood);
+                inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
+
+                RLConsole.Blit(mapConsole, 0, 0, mapWidth, mapHeight, rootConsole, 0, inventoryHeight);
+                RLConsole.Blit(statConsole, 0, 0, statWidth, statHeight, rootConsole, mapWidth, 0);
+                RLConsole.Blit(messageConsole, 0, 0, messageWidth, messageHeight, rootConsole, 0, screenHeight - messageHeight);
+                RLConsole.Blit(inventoryConsole, 0, 0, inventoryWidth, inventoryHeight, rootConsole, 0, 0);
+                rootConsole.Draw();
                 renderRequired = false;
             }
-
-            DungeonMap.Draw(mapConsole);
-            Player.Draw(mapConsole, DungeonMap);
-            Player.DrawStats(statConsole);
-
-            messageConsole.SetBackColor(0, 0, messageWidth, messageHeight, Swatch.DbDeepWater);
-            messageConsole.Print(1, 0, "Messages", Colors.TextHeading);
-
-            inventoryConsole.SetBackColor(0, 0, inventoryWidth, inventoryHeight, Swatch.DbWood);
-            inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
-
-            RLConsole.Blit(mapConsole, 0, 0, mapWidth, mapHeight, rootConsole, 0, inventoryHeight);
-            RLConsole.Blit(statConsole, 0, 0, statWidth, statHeight, rootConsole, mapWidth, 0);
-            RLConsole.Blit(messageConsole, 0, 0, messageWidth, messageHeight, rootConsole, 0, screenHeight - messageHeight);
-            RLConsole.Blit(inventoryConsole, 0, 0, inventoryWidth, inventoryHeight, rootConsole, 0, 0);
-            rootConsole.Draw();
         }
     }
 }

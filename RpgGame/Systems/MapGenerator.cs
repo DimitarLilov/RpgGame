@@ -2,7 +2,9 @@
 {
     using System;
     using Core;
+    using Core.Monsters;
     using RogueSharp;
+    using RogueSharp.DiceNotation;
 
     public class MapGenerator
     {
@@ -57,6 +59,7 @@
             }
 
             this.PlacePlayer();
+            this.PlaceMonsters();
             return this.map;
         }
 
@@ -97,6 +100,29 @@
                 for (int y = room.DungeonRoom.Top + 1; y < room.DungeonRoom.Bottom; y++)
                 {
                     this.map.SetCellProperties(x, y, true, true);
+                }
+            }
+        }
+
+        private void PlaceMonsters()
+        {
+            foreach (var room in this.map.Rooms)
+            {
+                if (Dice.Roll("1D10") < 7)
+                {
+                    var numberOfMonsters = Dice.Roll("1D4");
+                    for (int i = 0; i < numberOfMonsters; i++)
+                    {
+                        Point randomRoomLocation = this.map.GetRandomWalkableLocationInRoom(room);
+
+                        if (randomRoomLocation != null)
+                        {
+                            var monster = Orc.Create(1);
+                            monster.X = randomRoomLocation.X;
+                            monster.Y = randomRoomLocation.Y;
+                            this.map.AddMonster(monster);
+                        }
+                    }
                 }
             }
         }

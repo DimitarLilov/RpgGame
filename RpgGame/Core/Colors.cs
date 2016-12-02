@@ -18,7 +18,7 @@
                  
         public static readonly RLColor TextHeading = Swatch.DbLight;
                     
-        public static readonly RLColor KoboldColor = Swatch.DbBrightWood;
+        public static readonly RLColor OrcColor = Swatch.Green;
                  
         public static readonly RLColor Door = Swatch.ComplimentLighter;
         public static readonly RLColor DoorBackground = Swatch.ComplimentDarkest;
