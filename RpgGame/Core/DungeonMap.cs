@@ -1,10 +1,23 @@
 ﻿namespace RpgGame.Core
 {
+    using System.Collections.Generic;
     using RLNET;
     using RogueSharp;
 
     public class DungeonMap : Map
     {
+        private List<Room> rooms;
+
+        public DungeonMap()
+        {
+            this.rooms = new List<Room>();
+        }
+
+        public List<Room> Rooms
+        {
+            get { return this.rooms; }
+        }
+
         public void Draw(RLConsole mapConsole)
         {
             mapConsole.Clear();
