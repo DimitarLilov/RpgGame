@@ -2,7 +2,7 @@
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             Engine engine = new Engine();
             engine.Run();
