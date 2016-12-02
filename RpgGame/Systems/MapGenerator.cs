@@ -1,6 +1,8 @@
 ﻿namespace RpgGame.Systems
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using Core;
     using Core.Monsters;
     using RogueSharp;
@@ -56,6 +58,7 @@
             foreach (Room room in this.map.Rooms)
             {
                 this.CreateRoom(room);
+                this.CreateDoors(room);
             }
 
             this.PlacePlayer();
@@ -75,6 +78,67 @@
             player.Y = this.map.Rooms[0].DungeonRoom.Center.Y;
 
             this.map.AddPlayer(player);
+        }
+
+        private void CreateDoors(Room room)
+        {
+            int xMin = room.DungeonRoom.Left;
+            int xMax = room.DungeonRoom.Right;
+            int yMin = room.DungeonRoom.Top;
+            int yMax = room.DungeonRoom.Bottom;
+
+            List<Cell> borderCells = this.map.GetCellsAlongLine(xMin, yMin, xMax, yMin).ToList();
+            borderCells.AddRange(this.map.GetCellsAlongLine(xMin, yMin, xMin, yMax));
+            borderCells.AddRange(this.map.GetCellsAlongLine(xMin, yMax, xMax, yMax));
+            borderCells.AddRange(this.map.GetCellsAlongLine(xMax, yMin, xMax, yMax));
+
+            foreach (Cell cell in borderCells)
+            {
+                if (this.IsPotentialDoor(cell))
+                {
+                    this.map.SetCellProperties(cell.X, cell.Y, false, true);
+                    this.map.Doors.Add(new Door
+                    {
+                        X = cell.X,
+                        Y = cell.Y,
+                        IsOpen = false
+                    });
+                }
+            }
+        }
+
+        private bool IsPotentialDoor(Cell cell)
+        {
+            if (!cell.IsWalkable)
+            {
+                return false;
+            }
+
+            Cell right = this.map.GetCell(cell.X + 1, cell.Y);
+            Cell left = this.map.GetCell(cell.X - 1, cell.Y);
+            Cell top = this.map.GetCell(cell.X, cell.Y - 1);
+            Cell bottom = this.map.GetCell(cell.X, cell.Y + 1);
+
+            if (this.map.GetDoor(cell.X, cell.Y) != null ||
+                 this.map.GetDoor(right.X, right.Y) != null ||
+                 this.map.GetDoor(left.X, left.Y) != null ||
+                 this.map.GetDoor(top.X, top.Y) != null ||
+                 this.map.GetDoor(bottom.X, bottom.Y) != null)
+            {
+                return false;
+            }
+
+            if (right.IsWalkable && left.IsWalkable && !top.IsWalkable && !bottom.IsWalkable)
+            {
+                return true;
+            }
+
+            if (!right.IsWalkable && !left.IsWalkable && top.IsWalkable && bottom.IsWalkable)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)

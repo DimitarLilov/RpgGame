@@ -11,17 +11,25 @@
         private readonly List<Monster> monsters;
         private readonly List<TreasurePile> treasurePiles;
         private List<Room> rooms;
+        private List<Door> doors;
 
         public DungeonMap()
         {
             this.monsters = new List<Monster>();
             this.rooms = new List<Room>();
             this.treasurePiles = new List<TreasurePile>();
+            this.doors = new List<Door>();
         }
 
         public List<Room> Rooms
         {
             get { return this.rooms; }
+        }
+
+        public List<Door> Doors
+        {
+            get { return this.doors; }
+            set { this.doors = value; }
         }
 
         public void Draw(RLConsole mapConsole, RLConsole statConsole)
@@ -49,6 +57,11 @@
                 IDrawable drawableTreasure = treasurePile.Treasure as IDrawable;
                 drawableTreasure?.Draw(mapConsole, this);
             }
+
+            foreach (Door door in this.Doors)
+            {
+                door.Draw(mapConsole, this);
+            }
         }
 
         public void UpdatePlayerFieldOfView()
@@ -66,7 +79,7 @@
             }
         }
 
-        public bool SetActorPosition(Character character, int x, int y)
+        public bool SetCharacterPosition(Character character, int x, int y)
         {
             if (GetCell(x, y).IsWalkable)
             {
@@ -77,6 +90,8 @@
                 character.Y = y;
 
                 this.SetIsWalkable(character.X, character.Y, false);
+
+                this.OpenDoor(character, x, y);
 
                 if (character is Player)
                 {
@@ -123,6 +138,11 @@
             Engine.SchedulingSystem.Remove(monster);
         }
 
+        public Door GetDoor(int x, int y)
+        {
+            return this.Doors.SingleOrDefault(d => d.X == x && d.Y == y);
+        }
+
         public Monster GetMonsterAt(int x, int y)
         {
             return this.monsters.FirstOrDefault(m => m.X == x && m.Y == y);
@@ -161,6 +181,19 @@
                 {
                     this.treasurePiles.Remove(treasurePile);
                 }
+            }
+        }
+
+        private void OpenDoor(Character character, int x, int y)
+        {
+            Door door = this.GetDoor(x, y);
+            if (door != null && !door.IsOpen)
+            {
+                door.IsOpen = true;
+                var cell = GetCell(x, y);
+                this.SetCellProperties(x, y, true, true, cell.IsExplored);
+
+                Engine.MessageLog.Add($"{character.Name} opened a door");
             }
         }
 

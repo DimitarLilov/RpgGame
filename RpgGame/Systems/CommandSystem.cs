@@ -39,7 +39,7 @@
 
         public void MoveMonster(Monster monster, Cell cell)
         {
-            if (!Engine.DungeonMap.SetActorPosition(monster, cell.X, cell.Y))
+            if (!Engine.DungeonMap.SetCharacterPosition(monster, cell.X, cell.Y))
             {
                 if (Engine.Player.X == cell.X && Engine.Player.Y == cell.Y)
                 {
@@ -85,7 +85,7 @@
                     }
             }
 
-            if (Engine.DungeonMap.SetActorPosition(Engine.Player, x, y))
+            if (Engine.DungeonMap.SetCharacterPosition(Engine.Player, x, y))
             {
                 return true;
             }
