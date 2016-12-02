@@ -1,5 +1,6 @@
 ﻿namespace RpgGame
 {
+    using Systems;
     using Core;
     using RLNET;
 
@@ -26,6 +27,8 @@
 
         private static RLRootConsole rootConsole;
 
+        public static DungeonMap DungeonMap { get; private set; }
+
         public void Run()
         {
             string fontFileName = "../../Resources/terminal8x8.png";
@@ -33,6 +36,8 @@
             string consoleTitle = "Rpg Game";
 
             rootConsole = new RLRootConsole(fontFileName, screenWidth, screenHeight, 8, 8, 1f, consoleTitle);
+            MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight);
+            DungeonMap = mapGenerator.CreateMap();
 
             mapConsole = new RLConsole(mapWidth, mapHeight);
             messageConsole = new RLConsole(messageWidth, messageHeight);
@@ -57,6 +62,8 @@
 
         private static void OnRootConsoleRender(object sender, UpdateEventArgs e)
         {
+            DungeonMap.Draw(mapConsole);
+
             RLConsole.Blit(mapConsole, 0, 0, mapWidth, mapHeight, rootConsole, 0, inventoryHeight);
             RLConsole.Blit(statConsole, 0, 0, statWidth, statHeight, rootConsole, mapWidth, 0);
             RLConsole.Blit(messageConsole, 0, 0, messageWidth, messageHeight, rootConsole, 0, screenHeight - messageHeight);
