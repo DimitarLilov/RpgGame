@@ -27,7 +27,11 @@
 
         private static RLRootConsole rootConsole;
 
+        private static bool renderRequired = true;
+
         public static DungeonMap DungeonMap { get; private set; }
+
+        public static CommandSystem CommandSystem { get; private set; }
 
         public static Player Player { get; private set; }
 
@@ -38,6 +42,7 @@
             string consoleTitle = "Rpg Game";
 
             Player = new Player();
+            CommandSystem = new CommandSystem();
 
             rootConsole = new RLRootConsole(fontFileName, screenWidth, screenHeight, 8, 8, 1f, consoleTitle);
             MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight);
@@ -59,17 +64,54 @@
 
         private static void OnRootConsoleUpdate(object sender, UpdateEventArgs e)
         {
+            bool didPlayerAct = false;
+            RLKeyPress keyPress = rootConsole.Keyboard.GetKeyPress();
+
+            if (keyPress != null)
+            {
+                if (keyPress.Key == RLKey.Up)
+                {
+                    didPlayerAct = CommandSystem.MovePlayer(Direction.Up);
+                }
+                else if (keyPress.Key == RLKey.Down)
+                {
+                    didPlayerAct = CommandSystem.MovePlayer(Direction.Down);
+                }
+                else if (keyPress.Key == RLKey.Left)
+                {
+                    didPlayerAct = CommandSystem.MovePlayer(Direction.Left);
+                }
+                else if (keyPress.Key == RLKey.Right)
+                {
+                    didPlayerAct = CommandSystem.MovePlayer(Direction.Right);
+                }
+                else if (keyPress.Key == RLKey.Escape)
+                {
+                    rootConsole.Close();
+                }
+            }
+
+            if (didPlayerAct)
+            {
+                renderRequired = true;
+            }
+        }
+
+        private static void OnRootConsoleRender(object sender, UpdateEventArgs e)
+        {
+            if (renderRequired)
+            {
+                renderRequired = false;
+            }
+
+            DungeonMap.Draw(mapConsole);
+            Player.Draw(mapConsole, DungeonMap);
+
             messageConsole.SetBackColor(0, 0, messageWidth, messageHeight, Swatch.DbDeepWater);
             messageConsole.Print(1, 0, "Messages", Colors.TextHeading);
 
             inventoryConsole.SetBackColor(0, 0, inventoryWidth, inventoryHeight, Swatch.DbWood);
             inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
-        }
-
-        private static void OnRootConsoleRender(object sender, UpdateEventArgs e)
-        {
-            DungeonMap.Draw(mapConsole);
-            Player.Draw(mapConsole, DungeonMap);
 
             RLConsole.Blit(mapConsole, 0, 0, mapWidth, mapHeight, rootConsole, 0, inventoryHeight);
             RLConsole.Blit(statConsole, 0, 0, statWidth, statHeight, rootConsole, mapWidth, 0);

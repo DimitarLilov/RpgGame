@@ -29,6 +29,34 @@
             }
         }
 
+        public bool SetActorPosition(Character character, int x, int y)
+        {
+            if (GetCell(x, y).IsWalkable)
+            {
+                this.SetIsWalkable(character.X, character.Y, true);
+
+                character.X = x;
+                character.Y = y;
+
+                this.SetIsWalkable(character.X, character.Y, false);
+
+                if (character is Player)
+                {
+                    this.UpdatePlayerFieldOfView();
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public void SetIsWalkable(int x, int y, bool isWalkable)
+        {
+            Cell cell = GetCell(x, y);
+            this.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, isWalkable, cell.IsExplored);
+        }
+
         private void SetConsoleSymbolForCell(RLConsole console, Cell cell)
         {
             if (!cell.IsExplored)
