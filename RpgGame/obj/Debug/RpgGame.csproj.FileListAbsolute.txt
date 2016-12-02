@@ -1,0 +1,24 @@
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\Resources\terminal8x8.png
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\RpgGame.exe
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\RpgGame.pdb
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\OpenTK.dll
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\RLNET.dll
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\RogueSharp.dll
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\OpenTK.xml
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\bin\Debug\RogueSharp.xml
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\obj\Debug\RpgGame.exe
+C:\Users\Dimit\Documents\GitHub\RpgGame\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\Resources\terminal8x8.png
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\RpgGame.exe.config
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\RpgGame.exe
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\RpgGame.pdb
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\OpenTK.dll
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\RLNET.dll
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\RogueSharp.dll
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\OpenTK.xml
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\bin\Debug\RogueSharp.xml
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\obj\Debug\RpgGame.exe
+C:\Users\Dimit\Documents\GitHub\New folder\RpgGame\obj\Debug\RpgGame.pdb
