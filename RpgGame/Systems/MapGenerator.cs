@@ -22,7 +22,7 @@
         {
             this.map.Initialize(this.width, this.height);
 
-            var newRoom = new Room(1, 1, 10, 10);
+            var newRoom = new Room(1, 10, 10, 10);
             var new2Room = new Room(20, 1, 15, 10);
             var new3Room = new Room(35, 30, 10, 10);
             var new4Room = new Room(55, 30, 10, 10);
@@ -46,6 +46,9 @@
 
                 this.CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, previousRoomCenterY);
                 this.CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, currentRoomCenterX);
+
+                this.CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, previousRoomCenterX);
+                this.CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, currentRoomCenterY);
             }
 
             foreach (Room room in this.map.Rooms)
@@ -53,7 +56,22 @@
                 this.CreateRoom(room);
             }
 
+            this.PlacePlayer();
             return this.map;
+        }
+
+        private void PlacePlayer()
+        {
+            Player player = Engine.Player;
+            if (player == null)
+            {
+                player = new Player();
+            }
+
+            player.X = this.map.Rooms[0].DungeonRoom.Center.X;
+            player.Y = this.map.Rooms[0].DungeonRoom.Center.Y;
+
+            this.map.AddPlayer(player);
         }
 
         private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)

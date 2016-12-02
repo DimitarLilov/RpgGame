@@ -64,6 +64,13 @@
             return false;
         }
 
+        public void AddPlayer(Player player)
+        {
+            Engine.Player = player;
+            this.SetIsWalkable(player.X, player.Y, false);
+            this.UpdatePlayerFieldOfView();
+        }
+
         public void SetIsWalkable(int x, int y, bool isWalkable)
         {
             Cell cell = GetCell(x, y);

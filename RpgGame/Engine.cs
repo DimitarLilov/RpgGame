@@ -33,7 +33,9 @@
 
         public static CommandSystem CommandSystem { get; private set; }
 
-        public static Player Player { get; private set; }
+        public static MessageLog MessageLog { get; private set; }
+
+        public static Player Player { get; set; }
 
         public void Run()
         {
@@ -43,6 +45,7 @@
 
             Player = new Player();
             CommandSystem = new CommandSystem();
+            MessageLog = new MessageLog();
 
             rootConsole = new RLRootConsole(fontFileName, screenWidth, screenHeight, 8, 8, 1f, consoleTitle);
             MapGenerator mapGenerator = new MapGenerator(mapWidth, mapHeight);
@@ -106,6 +109,7 @@
 
             DungeonMap.Draw(mapConsole);
             Player.Draw(mapConsole, DungeonMap);
+            Player.DrawStats(statConsole);
 
             messageConsole.SetBackColor(0, 0, messageWidth, messageHeight, Swatch.DbDeepWater);
             messageConsole.Print(1, 0, "Messages", Colors.TextHeading);
