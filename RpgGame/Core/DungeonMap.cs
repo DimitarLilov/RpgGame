@@ -2,18 +2,21 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Interfaces;
     using RLNET;
     using RogueSharp;
 
     public class DungeonMap : Map
     {
         private readonly List<Monster> monsters;
+        private readonly List<TreasurePile> treasurePiles;
         private List<Room> rooms;
 
         public DungeonMap()
         {
             this.monsters = new List<Monster>();
             this.rooms = new List<Room>();
+            this.treasurePiles = new List<TreasurePile>();
         }
 
         public List<Room> Rooms
@@ -40,6 +43,12 @@
                     i++;
                 }
             }
+
+            foreach (TreasurePile treasurePile in this.treasurePiles)
+            {
+                IDrawable drawableTreasure = treasurePile.Treasure as IDrawable;
+                drawableTreasure?.Draw(mapConsole, this);
+            }
         }
 
         public void UpdatePlayerFieldOfView()
@@ -61,6 +70,7 @@
         {
             if (GetCell(x, y).IsWalkable)
             {
+                this.PickUpTreasure(character, x, y);
                 this.SetIsWalkable(character.X, character.Y, true);
 
                 character.X = x;
@@ -84,6 +94,19 @@
             Engine.Player = player;
             this.SetIsWalkable(player.X, player.Y, false);
             this.UpdatePlayerFieldOfView();
+        }
+
+        public void AddGold(int x, int y, int amount)
+        {
+            if (amount > 0)
+            {
+                this.AddTreasure(x, y, new Gold(amount));
+            }
+        }
+
+        public void AddTreasure(int x, int y, ITreasure treasure)
+        {
+            this.treasurePiles.Add(new TreasurePile(x, y, treasure));
         }
 
         public void AddMonster(Monster monster)
@@ -127,6 +150,18 @@
         {
             Cell cell = GetCell(x, y);
             this.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, isWalkable, cell.IsExplored);
+        }
+
+        private void PickUpTreasure(Character actor, int x, int y)
+        {
+            List<TreasurePile> treasureAtLocation = this.treasurePiles.Where(g => g.X == x && g.Y == y).ToList();
+            foreach (TreasurePile treasurePile in treasureAtLocation)
+            {
+                if (treasurePile.Treasure.PickUp(actor))
+                {
+                    this.treasurePiles.Remove(treasurePile);
+                }
+            }
         }
 
         private bool DoesRoomHaveWalkableSpace(Room room)

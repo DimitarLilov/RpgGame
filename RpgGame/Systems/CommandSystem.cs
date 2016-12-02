@@ -124,6 +124,7 @@
             }
             else if (defender is Monster)
             {
+                Engine.DungeonMap.AddGold(defender.X, defender.Y, defender.Gold);
                 Engine.DungeonMap.RemoveMonster((Monster)defender);
 
                 Engine.MessageLog.Add($" {defender.Name} died and dropped {defender.Gold} gold");
