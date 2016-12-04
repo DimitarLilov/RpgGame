@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using RogueSharp;
-    using RogueSharp.DiceNotation;
     using RpgGame.Behaviors;
     using RpgGame.Models;
     using RpgGame.Models.Map;
@@ -24,7 +23,7 @@
             this.map = new DungeonMap();
         }
 
-        public DungeonMap CreateMap()
+        public DungeonMap CreateMap(Player player, SchedulingSystem schedulingSystem)
         {
             this.map.Initialize(this.width, this.height);
 
@@ -63,24 +62,12 @@
                 this.CreateDoors(room);
             }
 
-            this.PlacePlayer();
-            this.PlaceMonsters();
+            this.PlacePlayer(player, schedulingSystem);
+            this.PlaceMonsters(schedulingSystem);
             return this.map;
         }
 
-        private void PlacePlayer()
-        {
-            Player player = Engine.Player;
-            if (player == null)
-            {
-                player = new Player("Guest");
-            }
 
-            player.X = this.map.Rooms[0].DungeonRoom.Center.X;
-            player.Y = this.map.Rooms[0].DungeonRoom.Center.Y;
-
-            this.map.AddPlayer(player);
-        }
 
         private void CreateDoors(Room room)
         {
@@ -143,21 +130,7 @@
             return false;
         }
 
-        private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)
-        {
-            for (int x = Math.Min(xStart, xEnd); x < Math.Max(xStart, xEnd); x++)
-            {
-                this.map.SetCellProperties(x, yPosition, true, true);
-            }
-        }
 
-        private void CreateVerticalTunnel(int yStart, int yEnd, int xPosition)
-        {
-            for (int y = Math.Min(yStart, yEnd); y < Math.Max(yStart, yEnd); y++)
-            {
-                this.map.SetCellProperties(xPosition, y, true, true);
-            }
-        }
 
         private void CreateRoom(Room room)
         {
@@ -170,27 +143,59 @@
             }
         }
 
-        private void PlaceMonsters()
+        private void PlacePlayer(Player player, SchedulingSystem schedulingSystem)
         {
+            if (player == null)
+            {
+                player = new Player("Guest");
+            }
+
+            player.X = this.map.Rooms.FirstOrDefault().DungeonRoom.Center.X;
+            player.Y = this.map.Rooms.FirstOrDefault().DungeonRoom.Center.Y;
+
+            this.map.AddPlayer(player, schedulingSystem);
+        }
+        private void PlaceMonsters(SchedulingSystem schedulingSystem)
+        {
+            var rnd = new Random();
             foreach (var room in this.map.Rooms)
             {
-                if (Dice.Roll("1D10") < 7)
+                if (rnd.Next(1, 10) >= 7)
                 {
-                    var numberOfMonsters = Dice.Roll("1D4");
-                    for (int i = 0; i < numberOfMonsters; i++)
-                    {
-                        Point randomRoomLocation = this.map.GetRandomWalkableLocationInRoom(room);
-
-                        if (randomRoomLocation != null)
-                        {
-                            var monster = new Orc(null);
-                            monster.X = randomRoomLocation.X;
-                            monster.Y = randomRoomLocation.Y;
-                            monster.Behavior = new StandardMoveAndAttack();
-                            this.map.AddMonster(monster);
-                        }
-                    }
+                    continue;
                 }
+
+                var numberOfMonsters = rnd.Next(1, 5);
+                for (int i = 0; i < numberOfMonsters; i++)
+                {
+                    Point randomRoomLocation = this.map.GetRandomWalkableLocationInRoom(room);
+                    if (randomRoomLocation == null)
+                    {
+                        continue;
+                    }
+
+                    var monster = new Orc(null);
+                    monster.X = randomRoomLocation.X;
+                    monster.Y = randomRoomLocation.Y;
+                    monster.Behavior = new StandardMoveAndAttack();
+                    this.map.AddMonster(monster, schedulingSystem);
+                }
+            }
+        }
+
+        private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)
+        {
+            for (int x = Math.Min(xStart, xEnd); x <= Math.Max(xStart, xEnd); x++)
+            {
+                this.map.SetCellProperties(x, yPosition, true, true);
+            }
+        }
+
+        private void CreateVerticalTunnel(int yStart, int yEnd, int xPosition)
+        {
+            for (int y = Math.Min(yStart, yEnd); y <= Math.Max(yStart, yEnd); y++)
+            {
+                this.map.SetCellProperties(xPosition, y, true, true);
             }
         }
     }

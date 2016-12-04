@@ -1,9 +1,11 @@
 ﻿namespace RpgGame.Models.Map
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using RLNET;
     using RogueSharp;
+    using RpgGame.Core;
     using RpgGame.Interfaces;
     using RpgGame.Models.Monsters;
     using RpgGame.Utilities;
@@ -60,12 +62,9 @@
             }
         }
 
-        public void UpdatePlayerFieldOfView()
+        private void UpdatePlayerFieldOfView(Player player)
         {
-            Player player = Engine.Player;
-
             this.ComputeFov(player.X, player.Y, player.Awareness, true);
-
             foreach (Cell cell in this.GetAllCells())
             {
                 if (this.IsInFov(cell.X, cell.Y))
@@ -91,20 +90,13 @@
 
                 if (character is Player)
                 {
-                    this.UpdatePlayerFieldOfView();
+                    this.UpdatePlayerFieldOfView((Player)character);
                 }
 
                 return true;
             }
 
             return false;
-        }
-
-        public void AddPlayer(Player player)
-        {
-            Engine.Player = player;
-            this.SetIsWalkable(player.X, player.Y, false);
-            this.UpdatePlayerFieldOfView();
         }
 
         public void AddGold(int x, int y, int amount)
@@ -120,18 +112,28 @@
             this.treasurePiles.Add(new TreasurePile(x, y, treasure));
         }
 
-        public void AddMonster(Monster monster)
+        public void AddPlayer(Player player, SchedulingSystem schedulingSystem)
+        {
+            this.SetIsWalkable(player.X, player.Y, false);
+            this.UpdatePlayerFieldOfView(player);
+
+            schedulingSystem.Add(player);
+        }
+
+        public void AddMonster(Monster monster, SchedulingSystem schedulingSystem)
         {
             this.monsters.Add(monster);
             this.SetIsWalkable(monster.X, monster.Y, false);
-            Engine.SchedulingSystem.Add(monster);
+
+            schedulingSystem.Add(monster);
         }
 
-        public void RemoveMonster(Monster monster)
+        public void RemoveMonster(Monster monster, SchedulingSystem schedulingSystem)
         {
             this.monsters.Remove(monster);
             this.SetIsWalkable(monster.X, monster.Y, true);
-            Engine.SchedulingSystem.Remove(monster);
+
+            schedulingSystem.Remove(monster);
         }
 
         public Door GetDoor(int x, int y)
@@ -148,10 +150,12 @@
         {
             if (this.DoesRoomHaveWalkableSpace(room))
             {
+                var rnd = new Random();
+
                 for (int i = 0; i < 100; i++)
                 {
-                    int x = Engine.Random.Next(1, room.DungeonRoom.Width - 2) + room.DungeonRoom.X;
-                    int y = Engine.Random.Next(1, room.DungeonRoom.Height - 2) + room.DungeonRoom.Y;
+                    int x = rnd.Next(1, room.DungeonRoom.Width - 2) + room.DungeonRoom.X;
+                    int y = rnd.Next(1, room.DungeonRoom.Height - 2) + room.DungeonRoom.Y;
                     if (this.IsWalkable(x, y))
                     {
                         return new Point(x, y);

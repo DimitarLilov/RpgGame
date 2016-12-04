@@ -17,5 +17,8 @@
 
         public const int InventoryWidth = 80;
         public const int InventoryHeight = 11;
+
+        public const string FontFilePath = "../../Resources/terminal8x8.png";
+        public const string GameTitle = "Rpg Game";
     }
 }

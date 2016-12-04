@@ -4,8 +4,10 @@ using System.Windows.Forms;
 
 namespace RpgGame.Forms
 {
+    using RpgGame.Core;
     using RpgGame.Data;
     using RpgGame.Data.Models;
+    using RpgGame.Systems;
 
     public partial class LoginForm : Form
     {
@@ -40,7 +42,12 @@ namespace RpgGame.Forms
                 context.SaveChanges();
 
 
-                Engine engine = new Engine();
+                var db = new TempDatabase();
+                var graphicsManager = new GraphicsManager(db);
+
+                var schedulingSystem = new SchedulingSystem();
+                var commandSystem = new CommandSystem(db, schedulingSystem);
+                Engine engine = new Engine(commandSystem, graphicsManager);
                 engine.Run();
             }
         }

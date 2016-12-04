@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\StandardMoveAndAttack.cs" />
+    <Compile Include="Core\System\GraphicsManager.cs" />
+    <Compile Include="Core\Data\TempDatabase.cs" />
     <Compile Include="Models\Character.cs" />
     <Compile Include="Utilities\Colors.cs" />
     <Compile Include="Enums\Direction.cs" />
@@ -102,7 +104,7 @@
     </Compile>
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\Swatch.cs" />
-    <Compile Include="Engine.cs" />
+    <Compile Include="Core\Engine.cs" />
     <Compile Include="Interfaces\IBehavior.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
@@ -110,10 +112,10 @@
     <Compile Include="Interfaces\ITreasure.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Core\CommandSystem.cs" />
+    <Compile Include="Core\System\CommandSystem.cs" />
     <Compile Include="Core\MapGenerator.cs" />
     <Compile Include="Utilities\MessageLog.cs" />
-    <Compile Include="Core\SchedulingSystem.cs" />
+    <Compile Include="Core\System\SchedulingSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

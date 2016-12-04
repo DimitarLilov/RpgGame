@@ -11,8 +11,9 @@
     {
         public bool Act(Monster monster, CommandSystem commandSystem)
         {
-            var dungeonMap = Engine.DungeonMap;
-            var player = Engine.Player;
+            var db = commandSystem.Database;
+            var dungeonMap = db.DungeonMap;
+            var player = db.Player;
 
             var monsterFov = new FieldOfView(dungeonMap);
 
