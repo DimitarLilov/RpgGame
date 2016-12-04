@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RLNET;
-using RogueSharp.Random;
-using RpgGame.Core;
-using RpgGame.Data;
-using RpgGame.Data.Models;
-using RpgGame.Systems;
 
 namespace RpgGame.Forms
 {
+    using RpgGame.Data;
+    using RpgGame.Data.Models;
+
     public partial class LoginForm : Form
     {
         private RpgGameContext context;
@@ -45,12 +36,12 @@ namespace RpgGame.Forms
             {
                 User updatedUser = context.Users.FirstOrDefault(u => u.Username == usernameTextBox.Text && u.Password == passwordTextBox.Text);
                 updatedUser.LastLoginDate = DateTime.Now;
-                context.Entry(select).CurrentValues.SetValues(updatedUser); // change the date of las login in the database
+                context.Entry(select).CurrentValues.SetValues(updatedUser);
                 context.SaveChanges();
 
 
                 Engine engine = new Engine();
-                engine.Run(); // run the game
+                engine.Run();
             }
         }
 

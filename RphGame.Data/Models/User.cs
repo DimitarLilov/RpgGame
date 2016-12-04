@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace RpgGame.Data.Models
+﻿namespace RpgGame.Data.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class User
     {
         [Key]

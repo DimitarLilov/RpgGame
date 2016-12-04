@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RpgGame.Data;
 
 namespace RpgGame.Forms
 {
+    using RpgGame.Data;
+
     public partial class StartGameForm : Form
     {
         private RpgGameContext context;

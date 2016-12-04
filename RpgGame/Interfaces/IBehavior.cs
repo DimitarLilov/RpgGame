@@ -1,7 +1,7 @@
 ﻿namespace RpgGame.Interfaces
 {
     using RpgGame.Core;
-    using RpgGame.Systems;
+    using RpgGame.Models.Monsters;
 
     public interface IBehavior
     {

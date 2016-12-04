@@ -7,7 +7,7 @@
     {
         RLColor Color { get; set; }
 
-        char Symbol { get; set; }
+        char Symbol { get; }
 
         int X { get; set; }
 

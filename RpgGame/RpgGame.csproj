@@ -71,17 +71,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\StandardMoveAndAttack.cs" />
-    <Compile Include="Core\Character.cs" />
-    <Compile Include="Core\Colors.cs" />
-    <Compile Include="Core\Direction.cs" />
-    <Compile Include="Core\Door.cs" />
-    <Compile Include="Core\DungeonMap.cs" />
-    <Compile Include="Core\Gold.cs" />
-    <Compile Include="Core\Monster.cs" />
-    <Compile Include="Core\Monsters\Orc.cs" />
-    <Compile Include="Core\Player.cs" />
-    <Compile Include="Core\Room.cs" />
-    <Compile Include="Core\TreasurePile.cs" />
+    <Compile Include="Models\Character.cs" />
+    <Compile Include="Utilities\Colors.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Models\Map\Door.cs" />
+    <Compile Include="Models\Map\DungeonMap.cs" />
+    <Compile Include="Models\Gold.cs" />
+    <Compile Include="Models\Monsters\Monster.cs" />
+    <Compile Include="Models\Monsters\Orc.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Map\Room.cs" />
+    <Compile Include="Models\TreasurePile.cs" />
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,36 +100,35 @@
     <Compile Include="Forms\StartGameForm.Designer.cs">
       <DependentUpon>StartGameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Swatch.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\Swatch.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Interfaces\IBehavior.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Interfaces\IScheduleable.cs" />
     <Compile Include="Interfaces\ITreasure.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Systems\CommandSystem.cs" />
-    <Compile Include="Systems\MapGenerator.cs" />
-    <Compile Include="Systems\MessageLog.cs" />
-    <Compile Include="Systems\SchedulingSystem.cs" />
+    <Compile Include="Core\CommandSystem.cs" />
+    <Compile Include="Core\MapGenerator.cs" />
+    <Compile Include="Utilities\MessageLog.cs" />
+    <Compile Include="Core\SchedulingSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="new\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\terminal8x8.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RphGame.Data\RphGame.Data.csproj">
+    <ProjectReference Include="..\RphGame.Data\RpgGame.Data.csproj">
       <Project>{a5c4a3a2-70a9-479e-8c3d-27927913777a}</Project>
-      <Name>RphGame.Data</Name>
+      <Name>RpgGame.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

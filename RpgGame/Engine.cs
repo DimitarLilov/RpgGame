@@ -1,10 +1,13 @@
 ﻿namespace RpgGame
 {
     using System;
-    using Systems;
     using Core;
     using RLNET;
     using RogueSharp.Random;
+    using RpgGame.Enums;
+    using RpgGame.Models;
+    using RpgGame.Models.Map;
+    using RpgGame.Utilities;
 
     public class Engine
     {
@@ -35,8 +38,6 @@
 
         public static CommandSystem CommandSystem { get; private set; }
 
-        public static MessageLog MessageLog { get; private set; }
-
         public static SchedulingSystem SchedulingSystem { get; private set; }
 
         public static IRandom Random { get; private set; }
@@ -57,9 +58,8 @@
 
             string consoleTitle = "Rpg Game";
 
-            Player = new Player();
+            Player = new Player("Duci");
             CommandSystem = new CommandSystem();
-            MessageLog = new MessageLog();
             SchedulingSystem = new SchedulingSystem();
             SchedulingSystem.Add(Player);
 
