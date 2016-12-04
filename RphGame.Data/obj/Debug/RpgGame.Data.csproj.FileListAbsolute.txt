@@ -1,0 +1,10 @@
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\RpgGame.Data.dll.config
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\RpgGame.Data.dll
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\RpgGame.Data.pdb
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\EntityFramework.dll
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\EntityFramework.xml
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\obj\Debug\RpgGame.Data.csprojResolveAssemblyReference.cache
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\obj\Debug\RpgGame.Data.dll
+C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RphGame.Data\obj\Debug\RpgGame.Data.pdb

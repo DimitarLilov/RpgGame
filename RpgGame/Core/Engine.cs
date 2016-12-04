@@ -1,4 +1,7 @@
-﻿namespace RpgGame
+﻿using System.Threading;
+using System.Windows.Forms;
+
+namespace RpgGame
 {
     using Core;
     using RLNET;
@@ -34,7 +37,7 @@
 
         public void Run()
         {
-            this.rootConsole.Run();
+                this.rootConsole.Run();
         }
 
         public void Exit()

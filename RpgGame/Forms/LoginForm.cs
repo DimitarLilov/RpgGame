@@ -41,13 +41,16 @@ namespace RpgGame.Forms
                 context.Entry(select).CurrentValues.SetValues(updatedUser);
                 context.SaveChanges();
 
-
                 var db = new TempDatabase();
                 var graphicsManager = new GraphicsManager(db);
 
                 var schedulingSystem = new SchedulingSystem();
                 var commandSystem = new CommandSystem(db, schedulingSystem);
                 Engine engine = new Engine(commandSystem, graphicsManager);
+
+                // hide the logging form, so the game cannot be turned on 10 times
+                this.Hide();
+                //this.Close();
                 engine.Run();
             }
         }
@@ -55,6 +58,14 @@ namespace RpgGame.Forms
         private void LoginForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(1);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartGameForm startGameForm = new StartGameForm();
+            startGameForm.Closed += (s, args) => this.Close();
+            startGameForm.Show();
         }
     }
 }

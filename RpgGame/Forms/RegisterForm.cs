@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RpgGame.Forms
@@ -9,11 +10,13 @@ namespace RpgGame.Forms
     public partial class RegisterForm : Form
     {
         private RpgGameContext context;
+
         public RegisterForm(RpgGameContext context)
         {
             this.context = context;
             InitializeComponent();
         }
+
         private void RegisterForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(1);
@@ -31,16 +34,33 @@ namespace RpgGame.Forms
             }
             else
             {
-                User newUser = new User()
+                var existingUser = context.Users.FirstOrDefault(u => u.Username == usernameTextbox.Text);
+                if (existingUser == null)
                 {
-                    Username = usernameTextbox.Text,
-                    Password = passwordTextBox.Text,
-                    RegisteredDate = DateTime.Now,
-                    LastLoginDate = DateTime.Now
-                };
-                context.Users.Add(newUser);
-                context.SaveChanges();
+                    User newUser = new User()
+                    {
+                        Username = usernameTextbox.Text,
+                        Password = passwordTextBox.Text,
+                        RegisteredDate = DateTime.Now,
+                        LastLoginDate = DateTime.Now
+                    };
+                    context.Users.Add(newUser);
+                    context.SaveChanges();
+                    MessageBox.Show("Registered Successfully.");
+                }
+                else
+                {
+                    MessageBox.Show("User with that username alredy exists.");
+                }
             }
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            StartGameForm startGameForm = new StartGameForm();
+            startGameForm.Closed += (s, args) => this.Close();
+            startGameForm.Show();
         }
     }
 }
