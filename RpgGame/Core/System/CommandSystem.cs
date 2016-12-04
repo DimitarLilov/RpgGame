@@ -208,7 +208,7 @@
             else if (defender is Monster)
             {
                 map.RemoveMonster((Monster)defender, this.schedulingSystem);
-
+                map.AddGold(defender.X, defender.Y, defender.Gold);
                 MessageLog.Add($"  {defender.Name} died and dropped {defender.Gold} gold");
             }
         }
