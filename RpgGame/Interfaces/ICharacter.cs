@@ -2,17 +2,13 @@
 {
     public interface ICharacter
     {
-        string Name { get; set; }
-
-        int Attack { get; set; }
-
-        int AttackChance { get; set; }
+        string Name { get; }
 
         int Awareness { get; set; }
-
-        int Defense { get; set; }
-
-        int DefenseChance { get; set; }
+        int MinAttack { get; set; }
+        int MaxAttack { get; set; }
+        int MinDefence { get; set; }
+        int MaxDefence { get; set; }
 
         int Gold { get; set; }
 

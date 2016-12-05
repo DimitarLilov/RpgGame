@@ -174,7 +174,7 @@
                         continue;
                     }
 
-                    var monster = new Orc(null);
+                    var monster = new Orc();
                     monster.X = randomRoomLocation.X;
                     monster.Y = randomRoomLocation.Y;
                     monster.Behavior = new StandardMoveAndAttack();

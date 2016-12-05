@@ -1,8 +1,8 @@
 ﻿namespace RpgGame.Core
 {
+    using System;
     using System.Text;
     using RogueSharp;
-    using RogueSharp.DiceNotation;
     using RpgGame.Enums;
     using RpgGame.Interfaces;
     using RpgGame.Models;
@@ -15,10 +15,13 @@
         private readonly TempDatabase db;
         private readonly SchedulingSystem schedulingSystem;
 
+        private readonly StringBuilder attackReport;
+
         public CommandSystem(TempDatabase db, SchedulingSystem schedulingSystem)
         {
             this.db = db;
             this.schedulingSystem = schedulingSystem;
+            this.attackReport = new StringBuilder();
         }
 
         public TempDatabase Database => this.db;
@@ -110,83 +113,17 @@
 
         private void Attack(Character attacker, Character defender, DungeonMap map)
         {
-            StringBuilder attackMessage = new StringBuilder();
-            StringBuilder defenseMessage = new StringBuilder();
+            var rnd = new Random();
 
-            int hits = this.ResolveAttack(attacker, defender, attackMessage);
+            int attack = rnd.Next(attacker.MinAttack, attacker.MaxAttack);
+            int block = rnd.Next(defender.MinDefence, defender.MaxDefence);
+            int damage = attack - block;
 
-            int blocks = this.ResolveDefense(defender, hits, attackMessage, defenseMessage);
-
-            MessageLog.Add(attackMessage.ToString());
-            if (!string.IsNullOrWhiteSpace(defenseMessage.ToString()))
-            {
-                MessageLog.Add(defenseMessage.ToString());
-            }
-
-            int damage = hits - blocks;
-
-            this.ResolveDamage(defender, damage, map);
-        }
-
-        private int ResolveAttack(Character attacker, Character defender, StringBuilder attackMessage)
-        {
-            int hits = 0;
-
-            attackMessage.AppendFormat("{0} attacks {1} and rolls: ", attacker.Name, defender.Name);
-
-            DiceExpression attackDice = new DiceExpression().Dice(attacker.Attack, 100);
-            DiceResult attackResult = attackDice.Roll();
-
-            foreach (TermResult termResult in attackResult.Results)
-            {
-                attackMessage.Append(termResult.Value + ", ");
-                if (termResult.Value >= 100 - attacker.AttackChance)
-                {
-                    hits++;
-                }
-            }
-
-            return hits;
-        }
-
-        private int ResolveDefense(Character defender, int hits, StringBuilder attackMessage, StringBuilder defenseMessage)
-        {
-            int blocks = 0;
-
-            if (hits > 0)
-            {
-                attackMessage.AppendFormat("scoring {0} hits.", hits);
-                defenseMessage.AppendFormat("  {0} defends and rolls: ", defender.Name);
-
-                DiceExpression defenseDice = new DiceExpression().Dice(defender.Defense, 100);
-                DiceResult defenseRoll = defenseDice.Roll();
-
-
-                foreach (TermResult termResult in defenseRoll.Results)
-                {
-                    defenseMessage.Append(termResult.Value + ", ");
-                    if (termResult.Value >= 100 - defender.DefenseChance)
-                    {
-                        blocks++;
-                    }
-                }
-                defenseMessage.AppendFormat("resulting in {0} blocks.", blocks);
-            }
-            else
-            {
-                attackMessage.Append("and misses completely.");
-            }
-
-            return blocks;
-        }
-
-        private void ResolveDamage(Character defender, int damage, DungeonMap map)
-        {
             if (damage > 0)
             {
                 defender.Health = defender.Health - damage;
 
-                MessageLog.Add($"  {defender.Name} was hit for {damage} damage");
+                this.attackReport.Append($"{defender.Name} was hit with {damage} damage by {attacker.Name}. ");
 
                 if (defender.Health <= 0)
                 {
@@ -195,21 +132,30 @@
             }
             else
             {
-                MessageLog.Add($"  {defender.Name} blocked all damage");
+                this.attackReport.Append($"{defender.Name} blocked all damage from {attacker.Name}. ");
             }
+
+            if (string.IsNullOrWhiteSpace(this.attackReport.ToString()))
+            {
+                return;
+            }
+
+            MessageLog.Add(this.attackReport.ToString());
+            this.attackReport.Clear();
         }
+
 
         private void ResolveDeath(Character defender, DungeonMap map)
         {
             if (defender is Player)
             {
-                MessageLog.Add($"  {defender.Name} was killed, GAME OVER MAN!");
+                this.attackReport.Append($"Player {defender.Name} was killed!");
             }
             else if (defender is Monster)
             {
                 map.RemoveMonster((Monster)defender, this.schedulingSystem);
                 map.AddGold(defender.X, defender.Y, defender.Gold);
-                MessageLog.Add($"  {defender.Name} died and dropped {defender.Gold} gold");
+                this.attackReport.Append($"{defender.Name} died and dropped {defender.Gold} gold.");
             }
         }
     }

@@ -8,8 +8,8 @@
     public abstract class Character : ICharacter, IDrawable, IScheduleable
     {
         protected Character(string name, int awareness,
-            int attack, int attackChance,
-            int defence, int defenceChance,
+            int minAttack, int maxAttack,
+            int minDefence, int maxDefence,
             int gold,
             int health, int maxHealth, int speed,
             RLColor color, char symbol, int x, int y)
@@ -17,10 +17,10 @@
             this.Name = name;
             this.Awareness = awareness;
 
-            this.Attack = attack;
-            this.AttackChance = attackChance;
-            this.Defense = defence;
-            this.DefenseChance = defenceChance;
+            this.MinAttack = minAttack;
+            this.MaxAttack = maxAttack;
+            this.MinDefence = minDefence;
+            this.MaxDefence = maxDefence;
 
             this.Gold = gold;
             this.Health = health;
@@ -35,13 +35,13 @@
             this.Steps = 0;
         }
 
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
         public int Awareness { get; set; }
         public int Steps { get; set; }
-        public int Attack { get; set; }
-        public int AttackChance { get; set; }
-        public int Defense { get; set; }
-        public int DefenseChance { get; set; }
+        public int MinAttack { get; set; }
+        public int MaxAttack { get; set; }
+        public int MinDefence { get; set; }
+        public int MaxDefence { get; set; }
         public int Gold { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }

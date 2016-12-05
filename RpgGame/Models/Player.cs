@@ -7,11 +7,11 @@
     {
         private const int DefaultAwareness = 15;
 
-        private const int DefaultAttack = 2;
-        private const int DefaultAttackChance = 50;
+        private const int DefaultMinAttack = 15;
+        private const int DefaultMaxAttack = 40;
 
-        private const int DefaultDefence = 2;
-        private const int DefaultDefenceChance = 40;
+        private const int DefaultMinDefence = 10;
+        private const int DefaultMaxDefence = 30;
 
         private const int DefaultGold = 0;
         private const int DefaultHealth = 100;
@@ -22,8 +22,8 @@
 
         public Player(string name)
             : base(name, DefaultAwareness,
-                  DefaultAttack, DefaultAttackChance,
-                  DefaultDefence, DefaultDefenceChance,
+                  DefaultMinAttack, DefaultMaxAttack,
+                  DefaultMinDefence, DefaultMaxDefence,
                   DefaultGold, DefaultHealth, DefaultMaxHealth,
                   DefaultSpeed, Colors.Player, DefaultSymbol, 10, 10)
         {
@@ -33,8 +33,8 @@
         {
             statConsole.Print(1, 1, $"Name:    {this.Name}", Colors.Text);
             statConsole.Print(1, 3, $"Health:  {this.Health}/{this.MaxHealth}", Colors.Text);
-            statConsole.Print(1, 5, $"Attack:  {this.Attack} ({this.AttackChance}%)", Colors.Text);
-            statConsole.Print(1, 7, $"Defense: {this.Defense} ({this.DefenseChance}%)", Colors.Text);
+            statConsole.Print(1, 5, $"Attack:  {this.MinAttack}-{this.MaxAttack}", Colors.Text);
+            statConsole.Print(1, 7, $"Defense: {this.MinDefence}-{this.MaxDefence}", Colors.Text);
             statConsole.Print(1, 9, $"Gold:    {this.Gold}", Colors.Gold);
         }
     }

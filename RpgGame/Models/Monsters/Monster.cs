@@ -8,14 +8,15 @@
 
     public abstract class Monster : Character
     {
-        protected Monster(string name, int awareness, int attack, int attackChance,
-            int defence, int defenceChance, int gold, int health, int maxHealth,
+        protected Monster(int awareness, int minAttack, int maxAttack,
+            int minDefence, int maxDefence, int gold, int health, int maxHealth,
             int speed, RLColor color, char symbol, int x, int y)
-            : base(name, awareness, attack, attackChance, defence, defenceChance,
+            : base(null, awareness, minAttack, maxAttack, minDefence, maxDefence,
                   gold, health, maxHealth, speed, color, symbol, x, y)
         {
         }
 
+        public override string Name => this.GetType().Name;
         public int? TurnsAlerted { get; set; }
 
         public IBehavior Behavior { get; set; }
