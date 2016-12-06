@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using RpgGame.Models;
 
 namespace RpgGame.Forms
 {
     using RpgGame.Data;
-    using RpgGame.Data.Models;
 
     public partial class RegisterForm : Form
     {

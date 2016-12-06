@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgGame", "RpgGame\RpgGame.csproj", "{4B1F4E45-0D81-436A-8FC6-009A2A91D4FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgGame.Data", "RphGame.Data\RpgGame.Data.csproj", "{A5C4A3A2-70A9-479E-8C3D-27927913777A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgGame.Models", "RpgGame.Models\RpgGame.Models.csproj", "{697AAC03-1855-460B-8116-121D7D6F908A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A5C4A3A2-70A9-479E-8C3D-27927913777A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5C4A3A2-70A9-479E-8C3D-27927913777A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5C4A3A2-70A9-479E-8C3D-27927913777A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{697AAC03-1855-460B-8116-121D7D6F908A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697AAC03-1855-460B-8116-121D7D6F908A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697AAC03-1855-460B-8116-121D7D6F908A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697AAC03-1855-460B-8116-121D7D6F908A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -73,7 +73,13 @@
     <Compile Include="Behaviors\StandardMoveAndAttack.cs" />
     <Compile Include="Core\System\GraphicsManager.cs" />
     <Compile Include="Core\Data\TempDatabase.cs" />
-    <Compile Include="Models\Character.cs" />
+    <Compile Include="Forms\CharacterSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CharacterSelectionForm.Designer.cs">
+      <DependentUpon>CharacterSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CharacterDto.cs" />
     <Compile Include="Utilities\Colors.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Models\Map\Door.cs" />
@@ -128,12 +134,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RpgGame.Models\RpgGame.Models.csproj">
+      <Project>{697aac03-1855-460b-8116-121d7d6f908a}</Project>
+      <Name>RpgGame.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RphGame.Data\RpgGame.Data.csproj">
       <Project>{a5c4a3a2-70a9-479e-8c3d-27927913777a}</Project>
       <Name>RpgGame.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\CharacterSelectionForm.resx">
+      <DependentUpon>CharacterSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

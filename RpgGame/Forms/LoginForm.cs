@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using RpgGame.Models;
 
 namespace RpgGame.Forms
 {
     using RpgGame.Core;
     using RpgGame.Data;
-    using RpgGame.Data.Models;
+    using RpgGame.Models;
     using RpgGame.Systems;
 
     public partial class LoginForm : Form
@@ -41,17 +42,20 @@ namespace RpgGame.Forms
                 context.Entry(select).CurrentValues.SetValues(updatedUser);
                 context.SaveChanges();
 
-                var db = new TempDatabase();
-                var graphicsManager = new GraphicsManager(db);
+                //var db = new TempDatabase();
+                //var graphicsManager = new GraphicsManager(db);
 
-                var schedulingSystem = new SchedulingSystem();
-                var commandSystem = new CommandSystem(db, schedulingSystem);
-                Engine engine = new Engine(commandSystem, graphicsManager);
+                //var schedulingSystem = new SchedulingSystem();
+                //var commandSystem = new CommandSystem(db, schedulingSystem);
+                //Engine engine = new Engine(commandSystem, graphicsManager);
 
                 // hide the logging form, so the game cannot be turned on 10 times
                 this.Hide();
                 //this.Close();
-                engine.Run();
+                //engine.Run();
+                CharacterSelectionForm csf = new CharacterSelectionForm(context);
+                csf.Show();
+                
             }
         }
 

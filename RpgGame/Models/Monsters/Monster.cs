@@ -6,7 +6,7 @@
     using RpgGame.Interfaces;
     using RpgGame.Utilities;
 
-    public abstract class Monster : Character
+    public abstract class Monster : CharacterDto
     {
         protected Monster(int awareness, int minAttack, int maxAttack,
             int minDefence, int maxDefence, int gold, int health, int maxHealth,

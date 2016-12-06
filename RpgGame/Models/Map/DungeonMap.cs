@@ -74,7 +74,7 @@
             }
         }
 
-        public bool SetCharacterPosition(Character character, int x, int y)
+        public bool SetCharacterPosition(CharacterDto character, int x, int y)
         {
             if (this.GetCell(x, y).IsWalkable)
             {
@@ -172,7 +172,7 @@
             this.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, isWalkable, cell.IsExplored);
         }
 
-        private void PickUpTreasure(Character actor, int x, int y)
+        private void PickUpTreasure(CharacterDto actor, int x, int y)
         {
             List<TreasurePile> treasureAtLocation = this.treasurePiles.Where(g => g.X == x && g.Y == y).ToList();
             foreach (TreasurePile treasurePile in treasureAtLocation)
@@ -184,7 +184,7 @@
             }
         }
 
-        private void OpenDoor(Character character, int x, int y)
+        private void OpenDoor(CharacterDto character, int x, int y)
         {
             Door door = this.GetDoor(x, y);
             if (door != null && !door.IsOpen)

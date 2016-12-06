@@ -111,7 +111,7 @@
             this.IsPlayerTurn = false;
         }
 
-        private void Attack(Character attacker, Character defender, DungeonMap map)
+        private void Attack(CharacterDto attacker, CharacterDto defender, DungeonMap map)
         {
             var rnd = new Random();
 
@@ -145,7 +145,7 @@
         }
 
 
-        private void ResolveDeath(Character defender, DungeonMap map)
+        private void ResolveDeath(CharacterDto defender, DungeonMap map)
         {
             if (defender is Player)
             {

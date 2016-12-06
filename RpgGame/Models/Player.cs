@@ -3,7 +3,7 @@
     using RLNET;
     using RpgGame.Utilities;
 
-    public class Player : Character
+    public class Player : CharacterDto
     {
         private const int DefaultAwareness = 15;
 
