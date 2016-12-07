@@ -20,5 +20,8 @@
 
         public const string FontFilePath = "../../Resources/terminal8x8.png";
         public const string GameTitle = "Rpg Game";
+        public const string MagePicturePath = "../../Resources/character_1.png";
+        public const string ShamanPicturePath = "../../Resources/character_2.png";
+        public const string WarriorPicturePath = "../../Resources/character_3.png";
     }
 }

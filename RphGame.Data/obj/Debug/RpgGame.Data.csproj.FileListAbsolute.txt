@@ -20,3 +20,15 @@ C:\Users\v\Documents\GitHub\RpgGame\RphGame.Data\obj\Debug\RpgGame.Data.dll
 C:\Users\v\Documents\GitHub\RpgGame\RphGame.Data\obj\Debug\RpgGame.Data.pdb
 C:\Users\v\Documents\GitHub\RpgGame\RphGame.Data\bin\Debug\RpgGame.Models.dll
 C:\Users\v\Documents\GitHub\RpgGame\RphGame.Data\bin\Debug\RpgGame.Models.pdb
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\RpgGame.Data.dll.config
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\RpgGame.Data.dll
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\RpgGame.Data.pdb
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\EntityFramework.dll
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\EntityFramework.SqlServer.dll
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\RpgGame.Models.dll
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\RpgGame.Models.pdb
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\EntityFramework.xml
+E:\Entity\RpgGame\RphGame.Data\bin\Debug\EntityFramework.SqlServer.xml
+E:\Entity\RpgGame\RphGame.Data\obj\Debug\RpgGame.Data.csprojResolveAssemblyReference.cache
+E:\Entity\RpgGame\RphGame.Data\obj\Debug\RpgGame.Data.dll
+E:\Entity\RpgGame\RphGame.Data\obj\Debug\RpgGame.Data.pdb

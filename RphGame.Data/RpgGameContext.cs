@@ -21,9 +21,9 @@ namespace RpgGame.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Mage>().ToTable("Mages");
-            modelBuilder.Entity<Warrior>().ToTable("Warriors");
-            modelBuilder.Entity<Paladin>().ToTable("Paladins");
+            //modelBuilder.Entity<Mage>().ToTable("Mages");
+            //modelBuilder.Entity<Warrior>().ToTable("Warriors");
+            //modelBuilder.Entity<Paladin>().ToTable("Paladins");
 
             base.OnModelCreating(modelBuilder);
         }

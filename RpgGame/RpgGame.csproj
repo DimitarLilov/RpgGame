@@ -129,6 +129,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Resources\character_1.png" />
+    <Content Include="Resources\character_2.png" />
+    <Content Include="Resources\character_3.png" />
     <Content Include="Resources\terminal8x8.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
