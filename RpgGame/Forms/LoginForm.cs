@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+<<<<<<< HEAD
 using RpgGame.Data.Data;
+=======
+>>>>>>> origin/master
 using RpgGame.Models;
 
 namespace RpgGame.Forms
@@ -9,7 +12,11 @@ namespace RpgGame.Forms
     using RpgGame.Core;
     using RpgGame.Data;
     using RpgGame.Models;
+<<<<<<< HEAD
    
+=======
+    using RpgGame.Systems;
+>>>>>>> origin/master
 
     public partial class LoginForm : Form
     {

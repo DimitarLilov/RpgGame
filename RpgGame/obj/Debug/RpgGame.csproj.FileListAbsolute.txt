@@ -20,6 +20,7 @@ C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.Form
 C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
 C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.exe
 C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.pdb
+<<<<<<< HEAD
 D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
 D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.exe
 D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
@@ -135,3 +136,54 @@ C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resou
 C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
 C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
 C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.CharacterSelectionForm.resources
+=======
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.exe
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\Resources\terminal8x8.png
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.exe
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.pdb
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\EntityFramework.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\OpenTK.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RLNET.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RogueSharp.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.Data.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.Data.pdb
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\EntityFramework.xml
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\OpenTK.xml
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RogueSharp.xml
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.LoginForm.resources
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resources
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.Models.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame\bin\Debug\RpgGame.Models.pdb
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.exe
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
+E:\Entity\RpgGame\RpgGame\bin\Debug\Resources\terminal8x8.png
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.exe
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.pdb
+E:\Entity\RpgGame\RpgGame\bin\Debug\EntityFramework.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\OpenTK.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\RLNET.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\RogueSharp.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.Data.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.Models.dll
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.Models.pdb
+E:\Entity\RpgGame\RpgGame\bin\Debug\RpgGame.Data.pdb
+E:\Entity\RpgGame\RpgGame\bin\Debug\EntityFramework.xml
+E:\Entity\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.xml
+E:\Entity\RpgGame\RpgGame\bin\Debug\OpenTK.xml
+E:\Entity\RpgGame\RpgGame\bin\Debug\RogueSharp.xml
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.CharacterSelectionForm.resources
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.LoginForm.resources
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resources
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
+E:\Entity\RpgGame\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
+>>>>>>> origin/master

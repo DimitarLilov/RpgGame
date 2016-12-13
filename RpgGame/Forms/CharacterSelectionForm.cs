@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using RpgGame.Core;
+<<<<<<< HEAD
 using RpgGame.Core.System;
 using RpgGame.Data;
 using RpgGame.Data.Data;
@@ -16,6 +17,13 @@ using RpgGame.Utilities;
 using RpgGame.Utilities.Utilities;
 
 
+=======
+using RpgGame.Data;
+using RpgGame.Models;
+using RpgGame.Models.Characters;
+using RpgGame.Systems;
+using RpgGame.Utilities;
+>>>>>>> origin/master
 namespace RpgGame.Forms
 {
     public partial class CharacterSelectionForm : Form
@@ -29,6 +37,7 @@ namespace RpgGame.Forms
 
         private void characterSelectButton_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             var context = new RpgGameContext();
             var unit = new UnitOfWork(context);
             var mappingService = new MappingService(unit);
@@ -41,6 +50,19 @@ namespace RpgGame.Forms
             Engine engine = new Engine(commandSystem, graphicsManager, objectManager);
             engine.Run();
             
+=======
+            var db = new TempDatabase();
+            var graphicsManager = new GraphicsManager(db);
+
+            var schedulingSystem = new SchedulingSystem();
+            var commandSystem = new CommandSystem(db, schedulingSystem);
+            Engine engine = new Engine(commandSystem, graphicsManager);
+
+            
+            //this.Hide();
+            
+            engine.Run();
+>>>>>>> origin/master
         }
 
         private void CharacterSelectionForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -96,6 +118,7 @@ namespace RpgGame.Forms
                 characterImageBox.Image = null;
                 characterImageBox.ImageLocation = Constants.WarriorPicturePath;
             }
+<<<<<<< HEAD
 
             Player pl = new Player();
             characterStats.Text =
@@ -110,6 +133,8 @@ namespace RpgGame.Forms
                 "Maximal health: " + pl.MaxHealth + Environment.NewLine;
 
 
+=======
+>>>>>>> origin/master
         }
     }
 }

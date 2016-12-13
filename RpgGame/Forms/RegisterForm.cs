@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+<<<<<<< HEAD
 using RpgGame.Data.Data;
+=======
+>>>>>>> origin/master
 using RpgGame.Models;
 
 namespace RpgGame.Forms

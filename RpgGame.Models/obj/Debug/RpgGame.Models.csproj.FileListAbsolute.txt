@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.dll.config
 C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.dll
 C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.pdb
@@ -8,3 +9,15 @@ C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\bin\Debug\EntityFramework.SqlServe
 C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.csprojResolveAssemblyReference.cache
 C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.dll
 C:\Users\Tedka\Desktop\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.pdb
+=======
+E:\Entity\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.dll
+E:\Entity\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.pdb
+E:\Entity\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.dll
+E:\Entity\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.pdb
+E:\Entity\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.csprojResolveAssemblyReference.cache
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame.Models\bin\Debug\RpgGame.Models.pdb
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.csprojResolveAssemblyReference.cache
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.dll
+C:\Users\v\Documents\GitHub\RpgGame\RpgGame.Models\obj\Debug\RpgGame.Models.pdb
+>>>>>>> origin/master

@@ -83,7 +83,11 @@ namespace RpgGame.ModelDTOs.Map
             }
         }
 
+<<<<<<< HEAD:RpgGame.ModelDTOs/Map/DungeonMapDTO.cs
         public bool SetCharacterPosition(CharacterDTO character, int x, int y)
+=======
+        public bool SetCharacterPosition(CharacterDto character, int x, int y)
+>>>>>>> origin/master:RpgGame/Models/Map/DungeonMap.cs
         {
             if (this.GetCell(x, y).IsWalkable)
             {
@@ -133,7 +137,11 @@ namespace RpgGame.ModelDTOs.Map
             this.SetCellProperties(cell.X, cell.Y, cell.IsTransparent, isWalkable, cell.IsExplored);
         }
 
+<<<<<<< HEAD:RpgGame.ModelDTOs/Map/DungeonMapDTO.cs
         private void PickUpTreasure(CharacterDTO actor, int x, int y)
+=======
+        private void PickUpTreasure(CharacterDto actor, int x, int y)
+>>>>>>> origin/master:RpgGame/Models/Map/DungeonMap.cs
         {
             List<TreasurePile> treasureAtLocation = this.treasurePiles.Where(g => g.X == x && g.Y == y).ToList();
             foreach (TreasurePile treasurePile in treasureAtLocation)
@@ -145,7 +153,11 @@ namespace RpgGame.ModelDTOs.Map
             }
         }
 
+<<<<<<< HEAD:RpgGame.ModelDTOs/Map/DungeonMapDTO.cs
         private void OpenDoor(CharacterDTO character, int x, int y)
+=======
+        private void OpenDoor(CharacterDto character, int x, int y)
+>>>>>>> origin/master:RpgGame/Models/Map/DungeonMap.cs
         {
             DoorDTO door = this.GetDoor(x, y);
             if (door != null && !door.IsOpen)

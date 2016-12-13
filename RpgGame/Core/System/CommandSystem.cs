@@ -132,7 +132,11 @@ namespace RpgGame.Core.System
             this.IsPlayerTurn = false;
         }
 
+<<<<<<< HEAD
         private void Attack(CharacterDTO attacker, CharacterDTO defender, DungeonMapDTO map)
+=======
+        private void Attack(CharacterDto attacker, CharacterDto defender, DungeonMap map)
+>>>>>>> origin/master
         {
             var rnd = new Random();
 
@@ -165,7 +169,12 @@ namespace RpgGame.Core.System
             this.attackReport.Clear();
         }
 
+<<<<<<< HEAD
         private void ResolveDeath(CharacterDTO defender, DungeonMapDTO map)
+=======
+
+        private void ResolveDeath(CharacterDto defender, DungeonMap map)
+>>>>>>> origin/master
         {
             if (defender is PlayerDTO)
             {
