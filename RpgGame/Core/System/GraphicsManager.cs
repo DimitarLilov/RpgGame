@@ -1,28 +1,34 @@
-﻿namespace RpgGame.Systems
-{
-    using RLNET;
-    using RpgGame.Core;
-    using RpgGame.Models;
-    using RpgGame.Models.Map;
-    using RpgGame.Utilities;
+﻿using System.Linq;
+using AutoMapper;
+using RLNET;
+using RpgGame.Data;
+using RpgGame.Data.Data;
+using RpgGame.ModelDTOs;
+using RpgGame.ModelDTOs.Map;
+using RpgGame.Utilities.Utilities;
 
+namespace RpgGame.Core.System
+{
     public class GraphicsManager
     {
-        private readonly TempDatabase db;
-        public GraphicsManager(TempDatabase db)
+        private readonly MappingService mappingService;
+
+        public GraphicsManager(MappingService mappingService)
         {
-            this.db = db;
+            this.mappingService = mappingService;
         }
-
-        private DungeonMap Map => this.db.DungeonMap;
-
-        private Player Player => this.db.Player;
 
         public void Draw(RLConsole mapConsole, RLConsole statConsole, RLConsole messageConsole)
         {
-            this.Map.Draw(mapConsole, statConsole);
-            this.Player.Draw(mapConsole, this.Map);
-            this.Player.DrawStats(statConsole);
+            var mapDto = this.mappingService.GetDungeonDtoById(1);
+            var playerDto = this.mappingService.GetPlayerDtoById(1);
+            mapDto.Initialize();
+            mapDto.UpdatePlayerFieldOfView(playerDto);
+            mapDto.Draw(mapConsole, statConsole);
+
+            playerDto.Draw(mapConsole, mapDto);
+            playerDto.DrawStats(statConsole);
+
             MessageLog.Draw(messageConsole);
         }
     }

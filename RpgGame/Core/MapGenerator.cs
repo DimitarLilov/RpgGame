@@ -1,202 +1,157 @@
-﻿namespace RpgGame.Core
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using RogueSharp;
+using RpgGame.Data;
+using RpgGame.Data.Data;
+using RpgGame.ModelDTOs.Map;
+using RpgGame.Models;
+using RpgGame.Utilities;
+
+namespace RpgGame.Core
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using RogueSharp;
-    using RpgGame.Behaviors;
-    using RpgGame.Models;
-    using RpgGame.Models.Map;
-    using RpgGame.Models.Monsters;
 
     public class MapGenerator
     {
-        private readonly int width;
-        private readonly int height;
+        private DungeonMap map;
 
-        private readonly DungeonMap map;
+        private readonly MappingService mappingService;
 
-        public MapGenerator(int width, int height)
+        public MapGenerator(MappingService mappingService)
         {
-            this.width = width;
-            this.height = height;
-            this.map = new DungeonMap();
+            this.mappingService = mappingService;
         }
 
-        public DungeonMap CreateMap(Player player, SchedulingSystem schedulingSystem)
+        public void GenerateMap(int dungeonId)
         {
-            this.map.Initialize(this.width, this.height);
+            var dungeonDto = this.mappingService.GetDungeonDtoById(dungeonId);
+            dungeonDto.Generate();
+        }
 
-            var newRoom = new Room(1, 10, 10, 10);
-            var new2Room = new Room(20, 1, 15, 10);
-            var new3Room = new Room(35, 30, 10, 10);
-            var new4Room = new Room(55, 30, 10, 10);
-
-            this.map.Rooms.Add(newRoom);
-            this.map.Rooms.Add(new2Room);
-            this.map.Rooms.Add(new3Room);
-            this.map.Rooms.Add(new4Room);
-
-            for (int r = 0; r < this.map.Rooms.Count; r++)
+        public void CreateMap(int width, int height, int level)
+        {
+            this.map = new DungeonMap()
             {
-                if (r == 0)
+                Width = width,
+                Height = height,
+                Level = level
+            };
+
+            this.mappingService.AddDungeon(this.map);
+
+            var rooms = new Room[]
+            {
+                new Room
                 {
-                    continue;
-                }
-
-                int previousRoomCenterX = this.map.Rooms[r - 1].DungeonRoom.Center.X;
-                int previousRoomCenterY = this.map.Rooms[r - 1].DungeonRoom.Center.Y;
-                int currentRoomCenterX = this.map.Rooms[r].DungeonRoom.Center.X;
-                int currentRoomCenterY = this.map.Rooms[r].DungeonRoom.Center.Y;
-
-                this.CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, previousRoomCenterY);
-                this.CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, currentRoomCenterX);
-
-                this.CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, previousRoomCenterX);
-                this.CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, currentRoomCenterY);
-            }
-
-            foreach (Room room in this.map.Rooms)
-            {
-                this.CreateRoom(room);
-                this.CreateDoors(room);
-            }
-
-            this.PlacePlayer(player, schedulingSystem);
-            this.PlaceMonsters(schedulingSystem);
-            return this.map;
-        }
-
-
-
-        private void CreateDoors(Room room)
-        {
-            int xMin = room.DungeonRoom.Left;
-            int xMax = room.DungeonRoom.Right;
-            int yMin = room.DungeonRoom.Top;
-            int yMax = room.DungeonRoom.Bottom;
-
-            List<Cell> borderCells = this.map.GetCellsAlongLine(xMin, yMin, xMax, yMin).ToList();
-            borderCells.AddRange(this.map.GetCellsAlongLine(xMin, yMin, xMin, yMax));
-            borderCells.AddRange(this.map.GetCellsAlongLine(xMin, yMax, xMax, yMax));
-            borderCells.AddRange(this.map.GetCellsAlongLine(xMax, yMin, xMax, yMax));
-
-            foreach (Cell cell in borderCells)
-            {
-                if (this.IsPotentialDoor(cell))
+                    X = 5,
+                    Y = 5,
+                    Height = 10,
+                    Width = 15
+                },
+                  new Room
                 {
-                    this.map.SetCellProperties(cell.X, cell.Y, false, true);
-                    this.map.Doors.Add(new Door
-                    {
-                        X = cell.X,
-                        Y = cell.Y,
-                        IsOpen = false
-                    });
-                }
-            }
-        }
-
-        private bool IsPotentialDoor(Cell cell)
-        {
-            if (!cell.IsWalkable)
-            {
-                return false;
-            }
-
-            Cell right = this.map.GetCell(cell.X + 1, cell.Y);
-            Cell left = this.map.GetCell(cell.X - 1, cell.Y);
-            Cell top = this.map.GetCell(cell.X, cell.Y - 1);
-            Cell bottom = this.map.GetCell(cell.X, cell.Y + 1);
-
-            if (this.map.GetDoor(cell.X, cell.Y) != null ||
-                 this.map.GetDoor(right.X, right.Y) != null ||
-                 this.map.GetDoor(left.X, left.Y) != null ||
-                 this.map.GetDoor(top.X, top.Y) != null ||
-                 this.map.GetDoor(bottom.X, bottom.Y) != null)
-            {
-                return false;
-            }
-
-            if (right.IsWalkable && left.IsWalkable && !top.IsWalkable && !bottom.IsWalkable)
-            {
-                return true;
-            }
-
-            if (!right.IsWalkable && !left.IsWalkable && top.IsWalkable && bottom.IsWalkable)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-
-
-        private void CreateRoom(Room room)
-        {
-            for (int x = room.DungeonRoom.Left + 1; x < room.DungeonRoom.Right; x++)
-            {
-                for (int y = room.DungeonRoom.Top + 1; y < room.DungeonRoom.Bottom; y++)
+                    X = 50,
+                    Y = 5,
+                    Height = 10,
+                    Width = 15
+                },
+                    new Room
                 {
-                    this.map.SetCellProperties(x, y, true, true);
+                    X = 30,
+                    Y = 30,
+                    Height = 10,
+                    Width = 15
                 }
+            };
+
+            this.mappingService.AddRoomsToDungeon(rooms, this.map.Id);
+
+            for (int r = 1; r < rooms.Count(); r++)
+            {
+                var previuosRoom = rooms[r - 1];
+                var currentRoom = rooms[r];
+
+                int previousRoomCenterX = previuosRoom.XCenter + previuosRoom.Width / 2;
+                int previousRoomCenterY = previuosRoom.YCenter;
+                int currentRoomCenterX = currentRoom.XCenter - currentRoom.Width / 2;
+                int currentRoomCenterY = currentRoom.YCenter;
+
+                this.CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, previousRoomCenterY, true);
+                this.CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, currentRoomCenterX, false);
+
+                this.CreateVerticalTunnel(previousRoomCenterY, currentRoomCenterY, previousRoomCenterX, true);
+                this.CreateHorizontalTunnel(previousRoomCenterX, currentRoomCenterX, currentRoomCenterY, false);
             }
         }
 
-        private void PlacePlayer(Player player, SchedulingSystem schedulingSystem)
+        private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition, bool entranceDoor)
         {
-            if (player == null)
+            var tunel = new Tunel()
             {
-                player = new Player("Guest");
-            }
+                XStart = xStart,
+                XEnd = xEnd,
+                YStart = yPosition,
+                YEnd = yPosition
+            };
 
-            player.X = this.map.Rooms.FirstOrDefault().DungeonRoom.Center.X;
-            player.Y = this.map.Rooms.FirstOrDefault().DungeonRoom.Center.Y;
+            Door door;
 
-            this.map.AddPlayer(player, schedulingSystem);
-        }
-        private void PlaceMonsters(SchedulingSystem schedulingSystem)
-        {
-            var rnd = new Random();
-            foreach (var room in this.map.Rooms)
+            if (entranceDoor)
             {
-                if (rnd.Next(1, 10) >= 7)
+                door = new Door()
                 {
-                    continue;
-                }
-
-                var numberOfMonsters = rnd.Next(1, 5);
-                for (int i = 0; i < numberOfMonsters; i++)
+                    X = xStart,
+                    Y = yPosition
+                };
+            }
+            else
+            {
+                door = new Door()
                 {
-                    Point randomRoomLocation = this.map.GetRandomWalkableLocationInRoom(room);
-                    if (randomRoomLocation == null)
-                    {
-                        continue;
-                    }
-
-                    var monster = new Orc();
-                    monster.X = randomRoomLocation.X;
-                    monster.Y = randomRoomLocation.Y;
-                    monster.Behavior = new StandardMoveAndAttack();
-                    this.map.AddMonster(monster, schedulingSystem);
-                }
+                    X = xEnd,
+                    Y = yPosition
+                };
             }
+
+            tunel.Door = door;
+
+            this.mappingService.AddTunelToDungeon(tunel, this.map.Id);
         }
 
-        private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)
+        private void CreateVerticalTunnel(int yStart, int yEnd, int xPosition, bool entranceDoor)
         {
-            for (int x = Math.Min(xStart, xEnd); x <= Math.Max(xStart, xEnd); x++)
-            {
-                this.map.SetCellProperties(x, yPosition, true, true);
-            }
-        }
 
-        private void CreateVerticalTunnel(int yStart, int yEnd, int xPosition)
-        {
-            for (int y = Math.Min(yStart, yEnd); y <= Math.Max(yStart, yEnd); y++)
+            var tunel = new Tunel()
             {
-                this.map.SetCellProperties(xPosition, y, true, true);
+                XStart = xPosition,
+                XEnd = xPosition,
+                YStart = yStart,
+                YEnd = yEnd
+            };
+
+            Door door;
+
+            if (entranceDoor)
+            {
+                door = new Door()
+                {
+                    X = xPosition,
+                    Y = yStart
+                };
             }
+            else
+            {
+                door = new Door()
+                {
+                    X = xPosition,
+                    Y = yEnd
+                };
+            }
+
+            tunel.Door = door;
+
+            this.mappingService.AddTunelToDungeon(tunel, this.map.Id);
         }
     }
 }

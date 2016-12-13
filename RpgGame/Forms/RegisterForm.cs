@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using RpgGame.Data.Data;
+using RpgGame.Models;
 
 namespace RpgGame.Forms
 {
     using RpgGame.Data;
-    using RpgGame.Data.Models;
 
     public partial class RegisterForm : Form
     {
@@ -34,8 +35,9 @@ namespace RpgGame.Forms
             }
             else
             {
-                var existingUser = context.Users.FirstOrDefault(u => u.Username == usernameTextbox.Text);
-                if (existingUser == null)
+                var users = context.Users.Select(u => u.Username);
+                var existingUser = users.Any(u => u == usernameTextbox.Text);
+                if (!existingUser)
                 {
                     User newUser = new User()
                     {
@@ -46,6 +48,7 @@ namespace RpgGame.Forms
                     };
                     context.Users.Add(newUser);
                     context.SaveChanges();
+
                     MessageBox.Show("Registered Successfully.");
                 }
                 else

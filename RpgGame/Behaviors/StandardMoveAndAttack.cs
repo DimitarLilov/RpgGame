@@ -1,21 +1,23 @@
-﻿namespace RpgGame.Behaviors
+﻿
+using RpgGame.Core.System;
+using RpgGame.ModelDTOs;
+using RpgGame.ModelDTOs.Map;
+using RpgGame.ModelDTOs.Monsters;
+using RpgGame.Models;
+using RpgGame.Utilities.Utilities;
+
+namespace RpgGame.Behaviors
 {
     using System.Linq;
     using RogueSharp;
-    using RpgGame.Core;
     using RpgGame.Interfaces;
-    using RpgGame.Models.Monsters;
     using RpgGame.Utilities;
 
     public class StandardMoveAndAttack : IBehavior
     {
-        public bool Act(Monster monster, CommandSystem commandSystem)
+        public bool Act(MonsterDTO monster, DungeonMapDTO map, PlayerDTO player, CommandSystem commandSystem)
         {
-            var db = commandSystem.Database;
-            var dungeonMap = db.DungeonMap;
-            var player = db.Player;
-
-            var monsterFov = new FieldOfView(dungeonMap);
+            var monsterFov = new FieldOfView(map);
 
             if (!monster.TurnsAlerted.HasValue)
             {
@@ -29,31 +31,31 @@
 
             if (monster.TurnsAlerted.HasValue)
             {
-                dungeonMap.SetIsWalkable(monster.X, monster.Y, true);
-                dungeonMap.SetIsWalkable(player.X, player.Y, true);
+                map.SetIsWalkable(monster.X, monster.Y, true);
+                map.SetIsWalkable(player.X, player.Y, true);
 
-                var pathFinder = new PathFinder(dungeonMap);
+                var pathFinder = new PathFinder(map);
                 Path path = null;
 
                 try
                 {
                     path = pathFinder.ShortestPath(
-                    dungeonMap.GetCell(monster.X, monster.Y),
-                    dungeonMap.GetCell(player.X, player.Y));
+                    map.GetCell(monster.X, monster.Y),
+                    map.GetCell(player.X, player.Y));
                 }
                 catch (PathNotFoundException)
                 {
                     MessageLog.Add($"{monster.Name} waits for a turn");
                 }
 
-                dungeonMap.SetIsWalkable(monster.X, monster.Y, false);
-                dungeonMap.SetIsWalkable(player.X, player.Y, false);
+                map.SetIsWalkable(monster.X, monster.Y, false);
+                map.SetIsWalkable(player.X, player.Y, false);
 
                 if (path != null)
                 {
                     try
                     {
-                        commandSystem.MoveMonster(monster, path.Steps.First());
+                        commandSystem.MoveMonster(monster, map, player, path.Steps.First());
                     }
                     catch (NoMoreStepsException)
                     {

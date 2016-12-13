@@ -30,12 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RogueSharp, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RogueSharp.3.0.0\lib\portable-net40+sl50+win+wpa81+wp80\RogueSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -51,13 +59,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Data\Repository.cs" />
+    <Compile Include="Data\UnitOfWork.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="MappingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RpgGameContext.cs" />
+    <Compile Include="Data\RpgGameContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RpgGame.ModelDTOs\RpgGame.ModelDTOs.csproj">
+      <Project>{94b0b81f-9c33-4cfe-a7ef-f75a3796da93}</Project>
+      <Name>RpgGame.ModelDTOs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RpgGame.Models\RpgGame.Models.csproj">
+      <Project>{453ff8bc-5e17-402c-81d0-6d19f19cccfe}</Project>
+      <Name>RpgGame.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RpgGame.Utilities\RpgGame.Utilities.csproj">
+      <Project>{02EA79A3-5F5E-46F0-92CD-23A086B33C91}</Project>
+      <Name>RpgGame.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

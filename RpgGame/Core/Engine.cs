@@ -1,15 +1,11 @@
-﻿using System.Threading;
-using System.Windows.Forms;
+﻿using RLNET;
+using RpgGame.Core.System;
+using RpgGame.Enums;
+using RpgGame.Models;
+using RpgGame.Utilities.Utilities;
 
-namespace RpgGame
+namespace RpgGame.Core
 {
-    using Core;
-    using RLNET;
-    using RpgGame.Enums;
-    using RpgGame.Models;
-    using RpgGame.Systems;
-    using RpgGame.Utilities;
-
     public class Engine
     {
         private RLRootConsole rootConsole;
@@ -21,10 +17,11 @@ namespace RpgGame
 
         private bool renderRequired;
 
-        public Engine(CommandSystem commandSystem, GraphicsManager graphicsManager)
+        public Engine(CommandSystem commandSystem, GraphicsManager graphicsManager, ObjectManager objectManager)
         {
             this.CommandSystem = commandSystem;
             this.GraphicsManager = graphicsManager;
+            this.ObjectManager = objectManager;
 
             this.renderRequired = true;
             this.Initialize();
@@ -34,10 +31,11 @@ namespace RpgGame
 
         public GraphicsManager GraphicsManager { get; }
 
+        public ObjectManager ObjectManager { get; }
 
         public void Run()
         {
-                this.rootConsole.Run();
+            this.rootConsole.Run();
         }
 
         public void Exit()
@@ -56,19 +54,19 @@ namespace RpgGame
                 {
                     if (keyPress.Key == RLKey.Up)
                     {
-                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Up);
+                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Up,1,1);
                     }
                     else if (keyPress.Key == RLKey.Down)
                     {
-                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Down);
+                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Down,1,1);
                     }
                     else if (keyPress.Key == RLKey.Left)
                     {
-                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Left);
+                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Left,1,1);
                     }
                     else if (keyPress.Key == RLKey.Right)
                     {
-                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Right);
+                        didPlayerAct = this.CommandSystem.MovePlayer(Direction.Right,1,1);
                     }
                     else if (keyPress.Key == RLKey.Escape)
                     {
@@ -86,7 +84,7 @@ namespace RpgGame
             }
             else
             {
-                this.CommandSystem.ActivateMonsters();
+                this.CommandSystem.ActivateMonsters(1,1);
                 this.renderRequired = true;
             }
         }
@@ -123,8 +121,26 @@ namespace RpgGame
             this.SetConsoleScreen();
             this.SetConsolePanels();
 
-            var player = new Player("Duci");
-            this.CommandSystem.CreateMainModels(player);
+            var player = new Player()
+            {
+                Name = "Duci",
+                Awareness = 15,
+
+                MinAttack = 15,
+                MaxAttack = 40,
+
+                MinDefence = 10,
+                MaxDefence = 30,
+
+                Gold = 0,
+                Health = 100,
+                MaxHealth = 100,
+
+                Speed = 10,
+            };
+
+            this.ObjectManager.CreateMainModels(player);
+            this.ObjectManager.GenerateObjects(1);
 
             this.rootConsole.Update += this.OnRootConsoleUpdate;
             this.rootConsole.Render += this.OnRootConsoleRender;

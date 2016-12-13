@@ -1,9 +1,10 @@
-﻿namespace RpgGame.Core
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using RpgGame.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using RpgGame.Interfaces;
+using RpgGame.ModelDTOs.Interfaces;
 
+namespace RpgGame.Core.System
+{
     public class SchedulingSystem
     {
         private readonly SortedDictionary<int, List<IScheduleable>> scheduleables;

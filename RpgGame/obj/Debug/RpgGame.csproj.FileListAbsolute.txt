@@ -20,3 +20,118 @@ C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.Form
 C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
 C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.exe
 C:\Users\NIKII\Desktop\RpgGameREal\RpgGame-master\RpgGame\obj\Debug\RpgGame.pdb
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.exe
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\Resources\terminal8x8.png
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RpgGame.exe
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RpgGame.pdb
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\EntityFramework.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\OpenTK.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RLNET.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RogueSharp.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RpgGame.Data.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RpgGame.Data.pdb
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\EntityFramework.xml
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.xml
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\OpenTK.xml
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\RogueSharp.xml
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.LoginForm.resources
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resources
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\AutoMapper.dll
+D:\Code\C#\Databases\Database Advanced\RpgGame\RpgGame\bin\Debug\AutoMapper.xml
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.exe
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.LoginForm.resources
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resources
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\Resources\terminal8x8.png
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.exe
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.pdb
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\AutoMapper.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\OpenTK.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RLNET.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RogueSharp.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Data.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Data.pdb
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\AutoMapper.xml
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.xml
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\OpenTK.xml
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RogueSharp.xml
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.ModelDTOs.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Models.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Utilities.dll
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.ModelDTOs.pdb
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Models.pdb
+C:\Users\Tedka\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Utilities.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.exe.config
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.exe
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\Resources\terminal8x8.png
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.exe
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\AutoMapper.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\EntityFramework.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\OpenTK.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RLNET.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RogueSharp.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.Data.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.ModelDTOs.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.Models.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.Utilities.dll
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.ModelDTOs.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.Models.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.Utilities.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RpgGame.Data.pdb
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\AutoMapper.xml
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\EntityFramework.xml
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\OpenTK.xml
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\bin\Debug\RogueSharp.xml
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.Forms.LoginForm.resources
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resources
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
+C:\Users\Tedka\Desktop\RpgGameBolamach\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.exe.config
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.exe
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.pdb
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\Resources\terminal8x8.png
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.exe
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.pdb
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\AutoMapper.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\OpenTK.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RLNET.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RogueSharp.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Data.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.ModelDTOs.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Models.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Utilities.dll
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.ModelDTOs.pdb
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Models.pdb
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Utilities.pdb
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RpgGame.Data.pdb
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\AutoMapper.xml
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.xml
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\OpenTK.xml
+C:\Users\Slav\Desktop\RpgGame\RpgGame\bin\Debug\RogueSharp.xml
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.csprojResolveAssemblyReference.cache
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.LoginForm.resources
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.RegisterForm.resources
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.StartGameForm.resources
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.csproj.GenerateResource.Cache
+C:\Users\Slav\Desktop\RpgGame\RpgGame\obj\Debug\RpgGame.Forms.CharacterSelectionForm.resources

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using RpgGame.Data.Data;
+using RpgGame.Models;
 
 namespace RpgGame.Forms
 {
     using RpgGame.Core;
     using RpgGame.Data;
-    using RpgGame.Data.Models;
-    using RpgGame.Systems;
+    using RpgGame.Models;
+   
 
     public partial class LoginForm : Form
     {
@@ -21,13 +23,14 @@ namespace RpgGame.Forms
 
         private void loginButton_Click_1(object sender, EventArgs e)
         {
+            UnitOfWork unit = new UnitOfWork(context);
             if (String.IsNullOrEmpty(usernameTextBox.Text) || String.IsNullOrEmpty(passwordTextBox.Text))
             {
                 MessageBox.Show("Fields can't be empty");
             }
 
             var select =
-                context.Users.FirstOrDefault(
+                unit.Users.GetFirst(
                     u => u.Username == usernameTextBox.Text && u.Password == passwordTextBox.Text); //current user
 
             if (select == null)
@@ -36,22 +39,25 @@ namespace RpgGame.Forms
             }
             else
             {
-                User updatedUser = context.Users.FirstOrDefault(u => u.Username == usernameTextBox.Text && u.Password == passwordTextBox.Text);
+                User updatedUser = unit.Users.GetFirst(u => u.Username == usernameTextBox.Text && u.Password == passwordTextBox.Text);
                 updatedUser.LastLoginDate = DateTime.Now;
-                context.Entry(select).CurrentValues.SetValues(updatedUser);
-                context.SaveChanges();
+                //context.Entry(select).CurrentValues.SetValues(updatedUser);
+                //context.SaveChanges();
 
-                var db = new TempDatabase();
-                var graphicsManager = new GraphicsManager(db);
+                //var db = new TempDatabase();
+                //var graphicsManager = new GraphicsManager(db);
 
-                var schedulingSystem = new SchedulingSystem();
-                var commandSystem = new CommandSystem(db, schedulingSystem);
-                Engine engine = new Engine(commandSystem, graphicsManager);
+                //var schedulingSystem = new SchedulingSystem();
+                //var commandSystem = new CommandSystem(db, schedulingSystem);
+                //Engine engine = new Engine(commandSystem, graphicsManager);
 
                 // hide the logging form, so the game cannot be turned on 10 times
                 this.Hide();
                 //this.Close();
-                engine.Run();
+                //engine.Run();
+                CharacterSelectionForm csf = new CharacterSelectionForm(context);
+                csf.Show();
+                
             }
         }
 

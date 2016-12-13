@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using RpgGame.Data.Data;
 
 namespace RpgGame.Forms
 {
@@ -35,7 +36,6 @@ namespace RpgGame.Forms
 
         private void StartGameForm_Load_1(object sender, EventArgs e)
         {
-            context.Database.Initialize(true);
         }
     }
 }

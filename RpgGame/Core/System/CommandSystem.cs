@@ -1,36 +1,43 @@
-﻿namespace RpgGame.Core
-{
-    using System;
-    using System.Text;
-    using RogueSharp;
-    using RpgGame.Enums;
-    using RpgGame.Interfaces;
-    using RpgGame.Models;
-    using RpgGame.Models.Map;
-    using RpgGame.Models.Monsters;
-    using RpgGame.Utilities;
+﻿using System;
+using System.Linq;
+using System.Text;
+using AutoMapper;
+using RogueSharp;
+using RpgGame.Behaviors;
+using RpgGame.Data;
+using RpgGame.Data.Data;
+using RpgGame.Enums;
+using RpgGame.Interfaces;
+using RpgGame.ModelDTOs;
+using RpgGame.ModelDTOs.Interfaces;
+using RpgGame.ModelDTOs.Map;
+using RpgGame.ModelDTOs.Monsters;
+using RpgGame.Utilities.Utilities;
 
+namespace RpgGame.Core.System
+{
     public class CommandSystem
     {
-        private readonly TempDatabase db;
         private readonly SchedulingSystem schedulingSystem;
+        private readonly MappingService mappingService;
 
         private readonly StringBuilder attackReport;
 
-        public CommandSystem(TempDatabase db, SchedulingSystem schedulingSystem)
+        public CommandSystem(SchedulingSystem schedulingSystem, MappingService mappingService)
         {
-            this.db = db;
+            this.mappingService = mappingService;
             this.schedulingSystem = schedulingSystem;
+
             this.attackReport = new StringBuilder();
         }
 
-        public TempDatabase Database => this.db;
-
         public bool IsPlayerTurn { get; set; }
 
-        public bool MovePlayer(Direction direction)
+        public bool MovePlayer(Direction direction, int id, int mapId)
         {
-            var player = this.db.Player;
+            var player = this.mappingService.GetPlayerById(id);
+            var playerDto = this.mappingService.GetPlayerDtoById(1);
+
             int x = player.X;
             int y = player.Y;
 
@@ -52,58 +59,72 @@
                     return false;
             }
 
-            var monster = this.db.DungeonMap.GetMonsterAt(x, y);
+            var map = this.mappingService.GetDungeonDtoById(id);
+
+            var monster = map.GetMonsterAt(x, y);
 
             if (monster != null)
             {
-                this.Attack(player, monster, this.db.DungeonMap);
+                this.Attack(playerDto, monster, map);
                 return true;
             }
 
-            return this.db.DungeonMap.SetCharacterPosition(player, x, y);
+            bool canMove = map.SetCharacterPosition(playerDto, x, y);
+
+            if (!canMove)
+            {
+                return false;
+            }
+
+            player.X = x;
+            player.Y = y;
+            this.mappingService.UnitOfWork.Commit();
+            return true;
         }
 
-        public void ActivateMonsters()
+        public void ActivateMonsters(int mapId, int playerId)
         {
+            var player = this.mappingService.GetPlayerDtoById(playerId);
+            var map = this.mappingService.GetDungeonDtoById(mapId);
             IScheduleable scheduleable = this.schedulingSystem.Get();
-            if (scheduleable is Player)
+            if (scheduleable is PlayerDTO)
             {
                 this.IsPlayerTurn = true;
-                this.schedulingSystem.Add(this.db.Player);
+                this.schedulingSystem.Add(scheduleable);
             }
             else
             {
-                var monster = scheduleable as Monster;
+                var monsterDto = scheduleable as MonsterDTO;
 
-                if (monster != null)
+                if (monsterDto != null)
                 {
-                    monster.PerformAction(this);
-                    this.schedulingSystem.Add(monster);
+                    var behavior = new StandardMoveAndAttack();
+                    behavior.Act(monsterDto, map, player, this);
+                    this.schedulingSystem.Add(monsterDto);
                 }
 
-                this.ActivateMonsters();
+                this.ActivateMonsters(1, 1);
             }
         }
 
-        public void MoveMonster(Monster monster, Cell cell)
+        public void MoveMonster(MonsterDTO monsterDto, DungeonMapDTO map, PlayerDTO player, Cell cell)
         {
-            if (!this.db.DungeonMap.SetCharacterPosition(monster, cell.X, cell.Y))
+            if (!map.SetCharacterPosition(monsterDto, cell.X, cell.Y))
             {
-                if (this.db.Player.X == cell.X && this.db.Player.Y == cell.Y)
+                if (player.X == cell.X && player.Y == cell.Y)
                 {
-                    this.Attack(monster, this.db.Player, this.db.DungeonMap);
+                    this.Attack(monsterDto, player, map);
                 }
             }
-        }
-
-        public void CreateMainModels(Player player)
-        {
-            this.db.Player = player;
-
-            MapGenerator mapGenerator =
-             new MapGenerator(Constants.MapWidth, Constants.MapHeight);
-
-            this.db.DungeonMap = mapGenerator.CreateMap(player, this.schedulingSystem);
+            else
+            {
+                var monster = this.mappingService.GetMonsterByPosition(monsterDto.X, monsterDto.Y);
+                monster.X = cell.X;
+                monster.Y = cell.Y;
+                monsterDto.X = cell.X;
+                monsterDto.Y = cell.Y;
+                this.mappingService.UnitOfWork.Commit();
+            }
         }
 
         public void EndPlayerTurn()
@@ -111,7 +132,7 @@
             this.IsPlayerTurn = false;
         }
 
-        private void Attack(Character attacker, Character defender, DungeonMap map)
+        private void Attack(CharacterDTO attacker, CharacterDTO defender, DungeonMapDTO map)
         {
             var rnd = new Random();
 
@@ -144,19 +165,24 @@
             this.attackReport.Clear();
         }
 
-
-        private void ResolveDeath(Character defender, DungeonMap map)
+        private void ResolveDeath(CharacterDTO defender, DungeonMapDTO map)
         {
-            if (defender is Player)
+            if (defender is PlayerDTO)
             {
                 this.attackReport.Append($"Player {defender.Name} was killed!");
             }
-            else if (defender is Monster)
+            else if (defender is MonsterDTO)
             {
-                map.RemoveMonster((Monster)defender, this.schedulingSystem);
+                this.RemoveMonster((MonsterDTO)defender, map);
                 map.AddGold(defender.X, defender.Y, defender.Gold);
                 this.attackReport.Append($"{defender.Name} died and dropped {defender.Gold} gold.");
             }
+        }
+
+        public void RemoveMonster(MonsterDTO monster, DungeonMapDTO map)
+        {
+            map.SetIsWalkable(monster.X, monster.Y, true);
+            this.schedulingSystem.Remove(monster);
         }
     }
 }
